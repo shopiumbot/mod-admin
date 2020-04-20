@@ -47,57 +47,15 @@ class Module extends WebModule { // implements BootstrapInterface
                         'visible' => true
                     ],
                     [
-                        'label' => Yii::t('admin/default', 'LANGUAGES'),
-                        'url' => ['/admin/app/languages'],
-                        'icon' => 'language',
-                        'visible' => YII_DEBUG
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'WIDGETS'),
-                        'url' => ['/admin/app/widgets'],
-                        'icon' => 'chip',
-                        'visible' => YII_DEBUG
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'Mails tpl'),
-                        'url' => ['/admin/app/mail-template'],
-                        'icon' => 'mail',
-                        'visible' => YII_DEBUG
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'DATABASE'),
-                        'url' => ['/admin/app/database'],
-                        'icon' => 'database',
-                        'visible' => true
-                    ],
-                    [
                         'label' => Yii::t('admin/default', 'LOGS'),
                         'url' => ['/admin/app/logs'],
                         'icon' => 'log',
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'MODULES'),
-                        'url' => ['/admin/app/modules'],
-                        'icon' => 'puzzle',
-                        'visible' => YII_DEBUG
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'DYNAMIC_FORM'),
-                        'url' => ['/admin/app/dynamic-form'],
-                        'icon' => 'arrow-right',
-                        'visible' => YII_DEBUG
                     ],
                     [
                         'label' => Yii::t('admin/default', 'HELP'),
                         'url' => ['/admin/app/help'],
                         'icon' => 'info',
                         'visible' => true
-                    ],
-                    [
-                        'label' => Yii::t('admin/default', 'TEMPLATE'),
-                        'url' => ['/admin/app/template'],
-                        'icon' => 'template',
-                        'visible' => YII_DEBUG
                     ],
                 ]
             ]
