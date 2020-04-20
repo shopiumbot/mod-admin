@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use panix\engine\assets\codemirror\CodeMirrorPhpAsset;
 use panix\engine\FileSystem;
@@ -11,7 +11,7 @@ use yii\web\Response;
 
 /**
  * Class TemplateController
- * @package panix\mod\admin\controllers\admin
+ * @package shopium\mod\admin\controllers\admin
  */
 class TemplateController extends AdminController
 {

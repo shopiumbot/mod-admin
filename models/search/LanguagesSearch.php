@@ -1,11 +1,11 @@
 <?php
 
-namespace panix\mod\admin\models\search;
+namespace shopium\mod\admin\models\search;
 
 use Yii;
 use yii\base\Model;
 use panix\engine\data\ActiveDataProvider;
-use panix\mod\admin\models\Languages;
+use shopium\mod\admin\models\Languages;
 
 
 class LanguagesSearch extends Languages

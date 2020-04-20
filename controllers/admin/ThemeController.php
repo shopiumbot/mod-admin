@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
 use panix\engine\controllers\AdminController;

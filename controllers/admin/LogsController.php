@@ -1,8 +1,8 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
-use panix\mod\admin\models\SettingsLogForm;
+use shopium\mod\admin\models\SettingsLogForm;
 use panix\mod\user\models\Session;
 use Yii;
 use yii\helpers\FileHelper;

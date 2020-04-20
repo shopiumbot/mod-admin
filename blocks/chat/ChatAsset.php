@@ -1,13 +1,13 @@
 <?php
 
-namespace panix\mod\admin\blocks\chat;
+namespace shopium\mod\admin\blocks\chat;
 
 use Yii;
 use yii\web\AssetBundle;
 
 /**
  * Class ChatAsset
- * @package panix\mod\admin\blocks\chat
+ * @package shopium\mod\admin\blocks\chat
  */
 class ChatAsset extends AssetBundle {
 

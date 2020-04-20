@@ -1,17 +1,17 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 
 use panix\engine\grid\GridColumns;
-use panix\mod\admin\models\DesktopWidgets;
+use shopium\mod\admin\models\DesktopWidgets;
 use panix\mod\cart\models\Order;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
 use yii\web\Response;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\Notification;
+use shopium\mod\admin\models\Notification;
 use panix\engine\Html;
 use panix\engine\FileSystem;
 use yii\web\UnauthorizedHttpException;
@@ -45,7 +45,7 @@ class DefaultController extends AdminController
     public function actionSendChat()
     {
         if (!empty($_POST)) {
-            echo \panix\mod\admin\blocks\chat\ChatWidget::sendChat($_POST);
+            echo \shopium\mod\admin\blocks\chat\ChatWidget::sendChat($_POST);
         }
     }
 

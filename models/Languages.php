@@ -1,14 +1,14 @@
 <?php
 
-namespace panix\mod\admin\models;
+namespace shopium\mod\admin\models;
 
 use Yii;
-use panix\mod\admin\models\query\LanguagesQuery;
+use shopium\mod\admin\models\query\LanguagesQuery;
 use panix\engine\db\ActiveRecord;
 
 /**
  * Class Languages
- * @package panix\mod\admin\models
+ * @package shopium\mod\admin\models
  *
  * @property string $code
  * @property string $name

@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin;
+namespace shopium\mod\admin;
 
 use Yii;
 //use yii\base\BootstrapInterface; // implements BootstrapInterface
@@ -9,7 +9,7 @@ use yii\base\BootstrapInterface;
 
 /**
  * Class Module
- * @package panix\mod\admin
+ * @package shopium\mod\admin
  */
 class Module extends WebModule { // implements BootstrapInterface
 
@@ -106,7 +106,7 @@ class Module extends WebModule { // implements BootstrapInterface
 
     public function getAdminSidebar()
     {
-        return (new \panix\mod\admin\widgets\sidebar\BackendNav)->findMenu('system')['items'];
+        return (new \shopium\mod\admin\widgets\sidebar\BackendNav)->findMenu('system')['items'];
     }
 
 }

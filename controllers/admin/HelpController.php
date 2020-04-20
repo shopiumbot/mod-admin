@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
 use panix\engine\Html;
@@ -11,7 +11,7 @@ use yii\helpers\FileHelper;
 
 /**
  * Class HelpController
- * @package panix\mod\admin\controllers\admin
+ * @package shopium\mod\admin\controllers\admin
  */
 class HelpController extends AdminController
 {

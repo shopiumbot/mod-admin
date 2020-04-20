@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\openweathermap;
+namespace shopium\mod\admin\blocks\openweathermap;
 
 use Yii;
 use panix\engine\data\Widget;

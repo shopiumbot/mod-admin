@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\models\query;
+namespace shopium\mod\admin\models\query;
 
 use yii\base\Behavior;
 use yii\db\Expression;
@@ -9,7 +9,7 @@ use yii\db\Query;
 
 /**
  * Class TagBehavior
- * @package panix\mod\admin\models\query
+ * @package shopium\mod\admin\models\query
  *
  * @property ActiveRecord $owner
  */

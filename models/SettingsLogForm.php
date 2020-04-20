@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\models;
+namespace shopium\mod\admin\models;
 
 use panix\engine\Html;
 use panix\engine\SettingsModel;

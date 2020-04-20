@@ -233,7 +233,7 @@ $this->registerJs("
     });
 ");
 
-$desktop = \panix\mod\admin\models\Desktop::findOne(1);
+$desktop = \shopium\mod\admin\models\Desktop::findOne(1);
 
 ?>
 
@@ -256,7 +256,7 @@ $desktop = \panix\mod\admin\models\Desktop::findOne(1);
             <div class="column <?= $class; ?>" data-id="<?= $x; ?>" data-desktop-id="<?= $desktop->id ?>">
                 <?php
 
-                $widgets = \panix\mod\admin\models\DesktopWidgets::find()
+                $widgets = \shopium\mod\admin\models\DesktopWidgets::find()
                     ->where([
                         'col' => $x,
                         'desktop_id' => $desktop->id

@@ -1,9 +1,9 @@
 <?php
 
-namespace panix\mod\admin\models;
+namespace shopium\mod\admin\models;
 
 use Yii;
-use panix\mod\admin\models\query\NotificationQuery;
+use shopium\mod\admin\models\query\NotificationQuery;
 use panix\engine\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
@@ -16,7 +16,7 @@ use yii\helpers\ArrayHelper;
  * @property string $text Content
  * @property integer $status
  * @property string $url
- * @package panix\mod\admin\models
+ * @package shopium\mod\admin\models
  */
 class Notification extends ActiveRecord
 {

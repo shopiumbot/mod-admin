@@ -1,12 +1,12 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 
 use Yii;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\search\NotificationSearch;
-use panix\mod\admin\models\Notification;
+use shopium\mod\admin\models\search\NotificationSearch;
+use shopium\mod\admin\models\Notification;
 
 class NotificationController extends AdminController
 {

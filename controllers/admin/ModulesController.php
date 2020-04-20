@@ -1,11 +1,11 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\search\ModulesSearch;
-use panix\mod\admin\models\Modules;
+use shopium\mod\admin\models\search\ModulesSearch;
+use shopium\mod\admin\models\Modules;
 
 class ModulesController extends AdminController
 {

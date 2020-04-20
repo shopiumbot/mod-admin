@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\widgets\dynamicform;
+namespace shopium\mod\admin\widgets\dynamicform;
 
 use panix\engine\data\Widget;
 

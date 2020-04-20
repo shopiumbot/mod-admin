@@ -1,15 +1,15 @@
 <?php
 
-namespace panix\mod\admin\controllers;
+namespace shopium\mod\admin\controllers;
 
 use Yii;
-use panix\mod\admin\models\LoginForm;
+use shopium\mod\admin\models\LoginForm;
 use panix\engine\controllers\AdminController;
 use panix\mod\rbac\filters\AccessControl;
 
 /**
  * Class AuthController
- * @package panix\mod\admin\controllers
+ * @package shopium\mod\admin\controllers
  */
 class AuthController extends AdminController
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace panix\mod\admin\models\query;
+namespace shopium\mod\admin\models\query;
 
-use panix\mod\admin\models\Notification;
+use shopium\mod\admin\models\Notification;
 use yii\db\ActiveQuery;
 
 class NotificationQuery extends ActiveQuery

@@ -1,12 +1,12 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 
 use Yii;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\DynamicForm;
-use panix\mod\admin\models\search\DynamicFormSearch;
+use shopium\mod\admin\models\DynamicForm;
+use shopium\mod\admin\models\search\DynamicFormSearch;
 
 class DynamicFormController extends AdminController
 {

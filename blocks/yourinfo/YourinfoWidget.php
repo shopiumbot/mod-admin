@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\yourinfo;
+namespace shopium\mod\admin\blocks\yourinfo;
 
 
 class YourinfoWidget extends \panix\engine\data\Widget {

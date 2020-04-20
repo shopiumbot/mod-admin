@@ -1,5 +1,5 @@
 <?php
-namespace panix\mod\admin\models;
+namespace shopium\mod\admin\models;
 
 use yii\db\ActiveRecord;
 

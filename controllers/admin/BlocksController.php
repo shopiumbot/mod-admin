@@ -1,10 +1,10 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
-use panix\mod\admin\models\Block;
-use panix\mod\admin\models\search\BlockSearch;
+use shopium\mod\admin\models\Block;
+use shopium\mod\admin\models\search\BlockSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 

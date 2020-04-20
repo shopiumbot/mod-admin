@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\sysinfo;
+namespace shopium\mod\admin\blocks\sysinfo;
 
 use Yii;
 use panix\engine\CMS;

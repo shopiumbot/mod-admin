@@ -1,7 +1,7 @@
 <?php
-namespace panix\mod\admin\components;
+namespace shopium\mod\admin\components;
 
-use panix\mod\admin\models\Modules;
+use shopium\mod\admin\models\Modules;
 use Yii;
 use panix\engine\data\Widget;
 use yii\helpers\ArrayHelper;

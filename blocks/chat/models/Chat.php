@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\chat\models;
+namespace shopium\mod\admin\blocks\chat\models;
 
 use Yii;
 use panix\engine\CMS;

@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\widgets\sidebar;
+namespace shopium\mod\admin\widgets\sidebar;
 
 use panix\engine\bootstrap\Nav;
 use yii\web\View;

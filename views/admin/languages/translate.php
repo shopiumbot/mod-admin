@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Json;
 use yii\helpers\Html;
-use panix\mod\admin\models\Languages;
+use shopium\mod\admin\models\Languages;
 
 $langModel = new Languages;
 

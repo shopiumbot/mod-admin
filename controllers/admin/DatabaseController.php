@@ -1,12 +1,12 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
 use yii\helpers\Html;
 use yii\data\ArrayDataProvider;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\SettingsDatabaseForm;
+use shopium\mod\admin\models\SettingsDatabaseForm;
 use panix\engine\CMS;
 
 class DatabaseController extends AdminController

@@ -1,14 +1,14 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 use panix\engine\CMS;
 use panix\engine\Html;
-use panix\mod\admin\components\YandexTranslate;
+use shopium\mod\admin\components\YandexTranslate;
 use Yii;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\Languages;
-use panix\mod\admin\models\search\LanguagesSearch;
+use shopium\mod\admin\models\Languages;
+use shopium\mod\admin\models\search\LanguagesSearch;
 use yii\base\Exception;
 use yii\helpers\FileHelper;
 use yii\helpers\Json;

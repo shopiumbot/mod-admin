@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\components;
+namespace shopium\mod\admin\components;
 
 use panix\engine\Curl;
 use Yii;

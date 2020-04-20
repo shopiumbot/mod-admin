@@ -1,9 +1,9 @@
 <?php
 
-namespace panix\mod\admin\models;
+namespace shopium\mod\admin\models;
 
 use Yii;
-use panix\mod\admin\models\search\ModulesSearch;
+use shopium\mod\admin\models\search\ModulesSearch;
 
 class Modules extends \panix\engine\db\ActiveRecord
 {

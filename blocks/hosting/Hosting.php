@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\hosting;
+namespace shopium\mod\admin\blocks\hosting;
 
 use panix\engine\data\Widget;
 use yii\httpclient\Client;

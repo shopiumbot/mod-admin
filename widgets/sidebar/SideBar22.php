@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\widgets\sidebar;
+namespace shopium\mod\admin\widgets\sidebar;
 
 use panix\engine\Html;
 use yii\helpers\ArrayHelper;
@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 /**
  * Class SideBar No used
- * @package panix\mod\admin\widgets\sidebar
+ * @package shopium\mod\admin\widgets\sidebar
  */
 class SideBar extends \yii\widgets\Menu {
 

@@ -1,5 +1,5 @@
 <?php
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 class BlocksmeController extends \panix\engine\controllers\AdminController {
 
     public $icon = 'icon-blocks';

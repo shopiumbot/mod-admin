@@ -1,6 +1,6 @@
 <?php
 
-namespace panix\mod\admin\blocks\hosting\form;
+namespace shopium\mod\admin\blocks\hosting\form;
 
 use Yii;
 use panix\engine\blocks_settings\WidgetModel;

@@ -1,13 +1,13 @@
 <?php
 
-namespace panix\mod\admin\controllers\admin;
+namespace shopium\mod\admin\controllers\admin;
 
 
 use Yii;
 use yii\web\Response;
 use panix\engine\controllers\AdminController;
-use panix\mod\admin\models\Desktop;
-use panix\mod\admin\models\DesktopWidgets;
+use shopium\mod\admin\models\Desktop;
+use shopium\mod\admin\models\DesktopWidgets;
 
 class DesktopController extends AdminController
 {

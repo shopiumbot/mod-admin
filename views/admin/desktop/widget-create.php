@@ -3,7 +3,7 @@ use panix\engine\bootstrap\ActiveForm;
 use panix\engine\Html;
 
 /**
- * @var \panix\mod\admin\models\DesktopWidgets $model
+ * @var \shopium\mod\admin\models\DesktopWidgets $model
  */
 ?>
 
@@ -15,9 +15,9 @@ use panix\engine\Html;
     <div class="card-body">
         <?php //echo $form->field($model, 'desktop_id'); ?>
         <?= $form->field($model, 'widget')->dropDownList([
-            'panix\mod\admin\blocks\hosting\Hosting' => 'Hosting',
-            'panix\mod\admin\blocks\chat\ChatWidget' => 'Чат',
-            'panix\mod\admin\blocks\sysinfo\SysInfoWidget' => 'Информация о системе',
+            'shopium\mod\admin\blocks\hosting\Hosting' => 'Hosting',
+            'shopium\mod\admin\blocks\chat\ChatWidget' => 'Чат',
+            'shopium\mod\admin\blocks\sysinfo\SysInfoWidget' => 'Информация о системе',
             'panix\mod\shop\blocks\popular\PopularBlock' => 'Популярные товары',
         ]) ?>
         <?= $form->field($model, 'col')->dropDownList($model->getColumnsRange()) ?>
