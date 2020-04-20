@@ -1,0 +1,24 @@
+{
+    "name": "shopium/mod-admin",
+    "description": "Module admin",
+    "keywords": ["module", "admin"],
+    "homepage": "https://github.com/shopium/mod-admin",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "PIXELION CMS",
+            "email": "dev@pixelion.com.ua",
+            "homepage": "https://pixelion.com.ua"
+        }
+    ],
+    "require": {
+        "panix/engine": "dev-master",
+        "panix/wgt-taginput": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "shopium\\mod\\admin\\": ""
+        }
+    }
+}
