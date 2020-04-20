@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Exception;
 use yii\helpers\Json;
 use yii\web\Response;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 
 class AjaxController extends AdminController
 {

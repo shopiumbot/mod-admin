@@ -8,7 +8,7 @@ use Yii;
 use yii\helpers\FileHelper;
 use panix\engine\Html;
 use yii\data\ArrayDataProvider;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use panix\engine\CMS;
 
 class LogsController extends AdminController
