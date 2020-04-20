@@ -10,7 +10,7 @@ use Yii;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
 use yii\web\Response;
-use core\components\controllers\AdminController;
+use panix\engine\controllers\AdminController;
 use shopium\mod\admin\models\Notification;
 use panix\engine\Html;
 use panix\engine\FileSystem;

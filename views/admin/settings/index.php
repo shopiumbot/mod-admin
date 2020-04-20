@@ -23,11 +23,6 @@ use panix\engine\bootstrap\ActiveForm;
                     'active' => true,
                 ],
                 [
-                    'label' => 'Обслуживание',
-                    'content' => $this->render('_maintenance', ['form' => $form, 'model' => $model]),
-                    'headerOptions' => [],
-                ],
-                [
                     'label' => 'Цензура',
                     'content' => $this->render('_censor', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],

@@ -15,10 +15,6 @@ class SettingsForm extends SettingsModel
     public $pagenum;
     public $email;
     public $theme;
-    public $maintenance;
-    public $maintenance_text;
-    public $maintenance_allow_users;
-    public $maintenance_allow_ips;
     public $censor;
     public $censor_words;
     public $censor_replace;
@@ -153,8 +149,8 @@ class SettingsForm extends SettingsModel
             [['email', 'sitename', 'pagenum', 'timezone', 'theme', 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner', 'attachment_image_type'], "required"],
             ['email', 'email'],
             ['attachment_wm_path', 'validateWatermarkFile'],
-            [['theme', 'censor_words', 'censor_replace', 'maintenance_text', 'maintenance_allow_ips', 'maintenance_allow_users', 'timezone', 'recaptcha_key', 'recaptcha_secret'], "string"],
-            [['maintenance', 'censor'], 'boolean'],
+            [['theme', 'censor_words', 'censor_replace', 'timezone', 'recaptcha_key', 'recaptcha_secret'], "string"],
+            [['censor'], 'boolean'],
 
             [['attachment_wm_path'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
             [['favicon'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'ico']],

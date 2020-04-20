@@ -3,7 +3,7 @@
 namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
-use core\components\controllers\AdminController;
+use panix\engine\controllers\AdminController;
 use shopium\mod\admin\models\SettingsForm;
 use yii\web\UploadedFile;
 

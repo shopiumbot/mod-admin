@@ -5,7 +5,7 @@ namespace shopium\mod\admin\controllers\admin;
 
 use Yii;
 use yii\web\Response;
-use core\components\controllers\AdminController;
+use panix\engine\controllers\AdminController;
 use shopium\mod\admin\models\Desktop;
 use shopium\mod\admin\models\DesktopWidgets;
 
