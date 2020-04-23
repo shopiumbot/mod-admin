@@ -10,7 +10,7 @@ use yii\helpers\Url;
         <div class="col-md-6 col-lg-3 col-sm-6">
             <?php
 
-            $orders = \panix\mod\cart\models\Order::find()->status()->all();
+            $orders = \shopium\mod\cart\models\Order::find()->status()->all();
             if ($orders) {
                 $orders_total_cash = 0;
                 $orders_products = 0;

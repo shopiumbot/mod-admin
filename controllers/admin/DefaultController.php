@@ -5,7 +5,6 @@ namespace shopium\mod\admin\controllers\admin;
 
 use panix\engine\grid\GridColumns;
 use shopium\mod\admin\models\DesktopWidgets;
-use panix\mod\cart\models\Order;
 use Yii;
 use yii\data\ArrayDataProvider;
 use yii\helpers\Json;
