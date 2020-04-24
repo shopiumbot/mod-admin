@@ -39,9 +39,8 @@ class AuthController extends AdminController
     public function actionIndex()
     {
 
-        die('zz');
-       // if (!Yii::$app->user->isGuest)
-           // return $this->redirect(['/admin']);
+        if (!Yii::$app->user->isGuest)
+            return $this->redirect(['/admin']);
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login((int)Yii::$app->settings->get('user', 'login_duration') * 86400)) {
