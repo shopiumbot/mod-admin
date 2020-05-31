@@ -49,32 +49,7 @@ use yii\helpers\Url;
             <?php } ?>
         </div>
     <?php } ?>
-    <div class="col-md-6 col-lg-3 col-sm-6">
 
-        <div class="card bg-danger text-white o-hidden">
-            <div class="card-body" style="padding: 1rem">
-                <div class="row">
-                    <i class="icon-comments"></i>
-                    <div class="col">
-                        <h2>Комментариев</h2>
-                        <div>123</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="card-footer z-1">
-                <span class="float-left">Подробней</span>
-                <span class="float-right"><i class="icon-arrow-right"></i></span>
-            </a>
-        </div>
-
-    </div>
-
-
-    <?php
-
-
-
-    ?>
     <?php if (Yii::$app->hasModule('stats')) {
         $data = Yii::$app->stats->countVisits();
 
@@ -107,25 +82,6 @@ use yii\helpers\Url;
 
         </div>
     <?php } ?>
-    <div class="col-md-6 col-lg-3 col-sm-6">
-
-
-        <div class="card bg-success text-white o-hidden">
-            <div class="card-body" style="padding: 1rem">
-                <div class="row">
-                    <i class="icon-shopcart"></i>
-                    <div class="col">
-                        <h2>Комментариев</h2>
-                        <div>123</div>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="card-footer z-1">
-                <span class="float-left">Подробней</span>
-                <span class="float-right"><i class="icon-arrow-right"></i></span>
-            </a>
-        </div>
-    </div>
 </div>
 <div class="row">
     <?php
