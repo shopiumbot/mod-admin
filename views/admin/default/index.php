@@ -83,20 +83,6 @@ use yii\helpers\Url;
         </div>
     <?php } ?>
 </div>
-<div class="row">
-    <?php
-    /*foreach (Yii::$app->getModules() as $module) {
-        if (isset($module->info)) {
-            ?>
-            <div class="col-md-2 col-xs-6 col-sm-4 text-center ">
-                <?= Html::a(Html::icon($module->icon, ['style' => 'font-size:30px']) . '<br>' . $module->info['label'], $module->info['url'], ['class' => 'a']) ?>
-            </div>
-
-            <?php
-        }
-    }*/
-    ?>
-</div>
 
 <?php
 
