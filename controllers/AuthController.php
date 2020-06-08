@@ -4,7 +4,7 @@ namespace shopium\mod\admin\controllers;
 
 use Yii;
 use shopium\mod\admin\models\LoginForm;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use yii\filters\AccessControl;
 
 /**

@@ -4,7 +4,7 @@ namespace shopium\mod\admin\controllers\admin;
 
 
 use Yii;
-use panix\engine\controllers\AdminController;
+use core\components\controllers\AdminController;
 use shopium\mod\admin\models\search\NotificationSearch;
 use shopium\mod\admin\models\Notification;
 
