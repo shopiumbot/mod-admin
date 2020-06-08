@@ -4,7 +4,7 @@ namespace shopium\mod\admin;
 
 use Yii;
 //use yii\base\BootstrapInterface; // implements BootstrapInterface
-use panix\engine\WebModule;
+use core\components\WebModule;
 use yii\base\BootstrapInterface;
 
 /**

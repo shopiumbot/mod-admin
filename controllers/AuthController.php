@@ -5,7 +5,7 @@ namespace shopium\mod\admin\controllers;
 use Yii;
 use shopium\mod\admin\models\LoginForm;
 use panix\engine\controllers\AdminController;
-use panix\mod\rbac\filters\AccessControl;
+use yii\filters\AccessControl;
 
 /**
  * Class AuthController
@@ -25,9 +25,9 @@ class AuthController extends AdminController
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'allowActions' => [
-                    'index',
-                ],
+                //'allowActions' => [
+                //    'index',
+               // ],
             ],
         ];
     }
