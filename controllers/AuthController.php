@@ -2,6 +2,7 @@
 
 namespace shopium\mod\admin\controllers;
 
+use core\components\controllers\WebController;
 use Yii;
 use shopium\mod\admin\models\LoginForm;
 use core\components\controllers\AdminController;
@@ -11,26 +12,12 @@ use yii\filters\AccessControl;
  * Class AuthController
  * @package shopium\mod\admin\controllers
  */
-class AuthController extends AdminController
+class AuthController extends WebController
 {
 
     public $layout = '@theme/views/layouts/auth';
     public $enableStatistic = false;
 
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::class,
-                //'allowActions' => [
-                //    'index',
-               // ],
-            ],
-        ];
-    }
 
     /**
      * Display admin panel login
