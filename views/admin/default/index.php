@@ -2,236 +2,156 @@
 
 use panix\engine\Html;
 use yii\helpers\Url;
+use Longman\TelegramBot\Request;
+use Longman\TelegramBot\Entities\InlineKeyboardButton;
+use shopium\mod\telegram\models\Chat;
+
+$user = Yii::$app->user->identity;
+
+$me = Request::getMe();
+$webhook_info = Request::getWebhookInfo();
+
+$chats = Chat::find()->asArray()->all();
+if ($chats) {
+    foreach ($chats as $chat) {
+        /*$send = Request::sendMessage([
+            'chat_id'=>$chat['id'],
+            'text'=>'test'
+        ]);*/
+    }
+    /*$venue = Request::sendVenue([
+        'chat_id' => $chat['id'],
+        'latitude' => 46.3974947,
+        'longitude' => 30.7125803,
+        'title' => 'Pixelion',
+        'address' => 'Pixelion address',
+    ]);*/
+
+    $keyboards[] = [
+        new InlineKeyboardButton([
+            'text' => 'Pay 1.00UAH',
+            'callback_data' => "cartDelete"
+        ]),
+        new InlineKeyboardButton([
+            'text' => '—',
+            'callback_data' => "spinner/down/cart"
+        ]),
+
+    ];
+    /*$invoice = Request::sendInvoice([
+        'chat_id' => $chat['id'],
+        'title' => 'title',
+        'description' => 'description',
+        'payload' => 'order-id',
+        'provider_token' => '632593626:TEST:i56982357197',
+        'start_parameter' => 'start_parameter',
+        'currency' => 'UAH',
+        'prices' => [
+            new \Longman\TelegramBot\Entities\Payments\LabeledPrice([
+                'label' => 'test',
+                'amount' => 100
+            ]),
+        ],
+
+        'disable_notification' => false,
+        'reply_markup' => new \Longman\TelegramBot\Entities\InlineKeyboard([
+            'inline_keyboard' => $keyboards
+        ])
+
+    ]);*/
+
+    //\panix\engine\CMS::dump($invoice);
+
+}
+//$time = strtotime("+1 month",strtotime('08-06-2020'));
+//echo $time.'<br>';
+//echo date('Y-m-d H:i:s',$time);
+
 
 ?>
+<?php if (Yii::$app->session->hasFlash('success-webhook')) { ?>
+    <div class="alert alert-success">
+        <?= Yii::$app->session->getFlash('success-webhook'); ?>
+    </div>
+<?php } ?>
+
 
 <div class="row">
-    <?php if (Yii::$app->hasModule('cart')) { ?>
-        <div class="col-md-6 col-lg-3 col-sm-6">
-            <?php
-            $year = date('Y');
-            $month = date('m');
-            $monthDaysCount = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-            $query = (new \yii\db\Query())->from(\shopium\mod\cart\models\Order::tableName())
-                ->where(['between', 'created_at', strtotime("{$year}-{$month}-01 00:00:00"), strtotime("{$year}-{$month}-{$monthDaysCount} 23:59:59")])
-                ->andWhere(['status_id' => 1])
-                ->select([
-                    'SUM(total_price_purchase - total_price) as income',
-                ]);
-
-
-            $order = $query->one();
-
-            if ($order) {
-                ?>
-                <div class="card bg-primary text-white o-hidden">
-                    <div class="card-body" style="padding: 1rem">
-                        <div class="row">
-                            <i class="icon-shopcart"></i>
-                            <div class="col">
-                                <?php if (isset(Yii::$app->getModule('cart')->count['num'])) { ?>
-                                    <h2>
-                                        <?= Yii::$app->getModule('cart')->count['num']; ?>
-                                        <span class="lead">новых заказов</span>
-                                    </h2>
-                                <?php } ?>
-                                <div>
-                                    <strong><?= Yii::$app->currency->number_format($order['income']); ?></strong> <?= Yii::$app->currency->active['iso']; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="<?= Url::toRoute(['/admin/cart']); ?>" class="card-footer z-1">
-                        <span class="float-left">Подробней</span>
-                        <span class="float-right"><i class="icon-arrow-right"></i></span>
-                    </a>
-                </div>
-            <?php } ?>
-        </div>
-    <?php } ?>
-
-    <?php if (Yii::$app->hasModule('stats')) {
-        $data = Yii::$app->stats->countVisits();
-
-        ?>
-        <div class="col-md-6 col-lg-3 col-sm-6">
-            <div class="card bg-warning o-hidden">
-                <div class="card-body" style="padding: 1rem">
-                    <div class="row">
-                        <i class="icon-stats"></i>
-                        <div class="col">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h2><small>хосты:</small> <?= $data['hosts']; ?></h2>
-                                </div>
-                                <div class="col-6">
-                                    <h2><small>хиты:</small> <?= $data['hits']; ?></h2>
-                                </div>
-                            </div>
-
-
-                            <div>Посетило</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="<?= Url::to(['/admin/stats']); ?>" class="card-footer z-1">
-                    <span class="float-left">Подробней</span>
-                    <span class="float-right"><i class="icon-arrow-right"></i></span>
-                </a>
-            </div>
-
-        </div>
-    <?php } ?>
-</div>
-
-<?php
-
-
-$this->registerJs("
-    $(function () {
-        $('.delete-widget').click(function () {
-            var uri = $(this).attr('href');
-            var ids = $(this).attr('data-id');
-
-            common.ajax(uri, {}, function (data) {
-                $('#ids_' + ids).remove();
-                common.notify('" . Yii::t('app/default', 'SUCCESS_RECORD_DELETE') . "', 'success');
-                common.removeLoader();
-            });
-            return false;
-        });
-
-        $('#createWidget').click(function () {
-            var uri = $(this).attr('href');
-
-
-            $.ajax({
-                url: uri,
-                data: {},
-                type: 'GET',
-                success: function (data) {
-                    $('body').append('<div id=\"dialog\" class=\"no-padding\"></div>');
-
-                    $('#dialog').dialog({
-                        modal: true,
-                        autoOpen: true,
-                        width: 500,
-                        title: '" . Yii::t('app/default', 'DESKTOP_CREATE_WIDGET') . "',
-                        resizable: false,
-                        open: function () {
-                            //var obj = $.parseJSON(data);
-                            $(this).html(data); //obj.content
-                            common.removeLoader();
-                        },
-                        close: function (event, ui) {
-                            $(this).remove();
-                        },
-                        buttons: [{
-                            text: common.message.save,
-                            'class': 'btn btn-sm btn-success',
-                            click: function () {
-                                var str = $('#dialog form').serialize();
-                                str += '&json=true';
-
-                                $.ajax({
-                                    url: uri,
-                                    data: str,
-                                    type: 'POST',
-                                    success: function () {
-                                        console.log(data);
-                                        $('#dialog').dialog('close');
-                                        location.reload();
-                                    }
-                                });
-                            }
-                        }, {
-                            text: common.message.cancel,
-                            'class': 'btn btn-sm btn-secondary',
-                            click: function () {
-                                $(this).dialog('close');
-                            }
-                        }]
-                    });
-                    $(\"#dialog\").dialog(\"open\");
-                }
-            });
-
-
-            return false;
-        });
-
-        $('.column').sortable({
-            containment: 'parent',
-            cursor: 'move',
-            connectWith: '.column',
-            handle: '.handle',
-            //revert: true, //animation
-            placeholder: 'placeholder',
-            update: function (event, ui) {
-                var data = $(this).sortable('serialize');
-                data += '&column_new=' + $(this).attr('data-id');
-                data += '&desktop_id=' + $(this).attr('data-desktop-id');
-                $.post('/admin/app/default/sortable', data, function () {
-                    common.notify('Success', 'success');
-                });
-
-            }
-        }).disableSelection();
-    });
-");
-
-$desktop = \shopium\mod\admin\models\Desktop::findOne(1);
-
-?>
-
-<div class="row desktop">
-    <?php
-    // Yii::import('app.blocks_settings.*');
-    // $manager = new WidgetSystemManager;
-    $x = 0;
-
-    if (isset($desktop->columns)) {
-        while ($x++ < $desktop->columns) {
-            if ($desktop->columns == 3) {
-                $class = 'col-lg-4 col-md-6 col-sm-4';
-            } elseif ($desktop->columns == 2) {
-                $class = 'col-lg-6 col-md-6 col-sm-4';
-            } else {
-                $class = '';
-            }
-            ?>
-            <div class="column <?= $class; ?>" data-id="<?= $x; ?>" data-desktop-id="<?= $desktop->id ?>">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
                 <?php
+                if ($me->isOk()) { ?>
+                    Подключен бот: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
+                <?php } else { ?>
+                    Бот не подключен!
+                <?php } ?>
+                <div class="float-right">
+                    <?php
 
-                $widgets = \shopium\mod\admin\models\DesktopWidgets::find()
-                    ->where([
-                        'col' => $x,
-                        'desktop_id' => $desktop->id
-                    ])
-                    ->orderBy(['ordern' => SORT_DESC])
-                    ->all();
-                if ($widgets) {
-                    foreach ($widgets as $wgt) {
-                        ?>
-                        <div class="card desktop-widget" id="ids_<?= $wgt->id ?>" data-test="test-<?= $x ?>">
+                    if ($webhook_info->isOk()) {
+                        $result = $webhook_info->getResult();
 
-                            <div class="card-header">
-                                <h5><?= (new $wgt->widget)->getTitle(); ?></h5>
-                                <div class="card-option">
-                                    <?php
-                                    echo Html::a('<i class="icon-settings"></i>', ['/admin/app/widgets/update', 'alias' => $wgt->widget], array('class' => ' btn btn-link'));
-                                    echo Html::a('<i class="icon-move"></i>', 'javascript:void(0)', ['class' => 'handle btn btn-link']);
-                                    echo Html::a('<i class="icon-delete"></i>', ['delete-widget', 'id' => $wgt->id], ['data-id' => $wgt->id, 'class' => 'delete-widget btn btn-link']);
+                        if (!empty($result->url)) {
+                            if ($result->url === Yii::$app->user->webhookUrl) {
+                                echo Html::a('☹️ Оптисать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
+                            }
+                        } else {
+                            echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
+                        }
+                    }
+                    ?>
+                </div>
+            </div>
+            <div class="card-body">
+
+                <?php
+                if ($me->isOk()) {
+                    $result = $me->getResult();
+                    $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
+
+                    if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
+                        $photo = $profile->getResult()->photos[0][2];
+                        $file = Request::getFile(['file_id' => $photo['file_id']]);
+                        if (!file_exists(Yii::getAlias('@app/web/telegram/downloads') . DIRECTORY_SEPARATOR . $file->getResult()->file_path)) {
+                            $download = Request::downloadFile($file->getResult());
+
+                        } else {
+                            echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
+                        }
+                    }
+                    ?>
+                <?php } ?>
+
+                <?php if ($user->expire) { ?>
+                    <div class="form-group row">
+                        <div class="col-sm-5 col-lg-5"><label>Продлен до</label></div>
+                        <div class="col-sm-7 col-lg-7">
+                            <?= \panix\engine\CMS::date($user->expire); ?>
+                        </div>
+                    </div>
+                <?php } ?>
+                <?php if ($user->plan_id) { ?>
+                    <div class="form-group row">
+                        <div class="col-sm-5 col-lg-5"><label>Текущий тариф</label></div>
+                        <div class="col-sm-7 col-lg-7">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <?= Yii::$app->params['plan'][$user->plan_id]['name']; ?>
+                                    <?php if ($user->trial) {
+                                        echo Html::tag('span', 'TRIAL', ['class' => 'badge badge-danger']);
+                                    }
                                     ?>
                                 </div>
+                                <div class="col-lg-6 text-lg-right"><?= Html::a('Оплатить', '', ['class' => 'btn btn-success']); ?></div>
                             </div>
-                            <div class="card-body">
-                                <?php echo $wgt->widget::widget(); ?>
-                            </div>
+
                         </div>
-                    <?php } ?>
+                    </div>
                 <?php } ?>
+
             </div>
-        <?php } ?>
-    <?php } ?>
+        </div>
+
+    </div>
 </div>
