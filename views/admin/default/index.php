@@ -108,7 +108,7 @@ if ($chats) {
                 <?php
                 if ($me->isOk()) {
                     $result = $me->getResult();
-                    $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
+                   /* $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
 
                     if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
                         $photo = $profile->getResult()->photos[0][2];
@@ -119,7 +119,9 @@ if ($chats) {
                         } else {
                             echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
                         }
-                    }
+                    }*/
+                    echo Html::img($this->context->botPhoto, ['class' => 'mb-4', 'width' => 100]);
+
                     ?>
                 <?php } ?>
 
