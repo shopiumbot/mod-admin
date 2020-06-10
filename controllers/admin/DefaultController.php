@@ -20,32 +20,15 @@ class DefaultController extends AdminController
 
     public $icon = 'icon-app';
 
-    public function actions()
-    {
-        return [
-            'sortable' => [
-                'class' => 'panix\engine\grid\sortable\Action',
-                'modelClass' => DesktopWidgets::class,
-                'successMessage' => Yii::t('app/default', 'SORT_PRODUCT_SUCCESS_MESSAGE')
-            ],
-        ];
-    }
-
     public function actionIndex()
     {
+
         $this->pageName = Yii::t('app/admin', 'CMS');
         $this->breadcrumbs[] = $this->pageName;
         $this->clearCache();
         $this->clearAssets();
 
         return $this->render('index');
-    }
-
-    public function actionSendChat()
-    {
-        if (!empty($_POST)) {
-            echo \shopium\mod\admin\blocks\chat\ChatWidget::sendChat($_POST);
-        }
     }
 
     public function actionAjaxCounters()

@@ -29,7 +29,7 @@ $form = ActiveForm::begin([
 
 
 <?= $form->field($model, 'username', [
-    'parts' => ['{icon}' => 'user'],
+    'parts' => ['{icon}' => 'user-outline'],
 ])->textInput([
     'class' => 'form-control',
     'placeholder' => $model->getAttributeLabel('username')
@@ -45,18 +45,18 @@ $form = ActiveForm::begin([
     ],
     'template' => '<div class="col"><div class="input-group"><div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-{icon}"></i></span>
-                </div>{label}{input}<div class="input-group-append">{switch}</div>{hint}{error}</div></div>'
+                </div>{label}{input}<div class="input-group-append" style="position: absolute;right: 1px;background: #fff;top: 1px;">{switch}</div>{hint}{error}</div></div>'
 ])
     ->passwordInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('password')])
     ->label(false);
 ?>
 
 
-    <div class="form-group row">
-        <div class="col-sm-6">
+    <div class="form-group row mb-0 pb-0">
+        <div class="col-sm-7">
             <?= $form->field($model, 'rememberMe', ['options' => ['class' => 'mt-2']])->checkbox() ?>
         </div>
-        <div class="col-sm-6 controls text-right">
+        <div class="col-sm-5 controls text-right">
             <?= Html::submitButton(Yii::t('user/default', 'LOGIN'), ['class' => 'btn btn-success']) ?>
         </div>
     </div>
