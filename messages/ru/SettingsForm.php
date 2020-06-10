@@ -7,12 +7,7 @@ return [
     'MAINTENANCE_TEXT' => 'Сообщение для закрытого сайта',
     'MAINTENANCE_ALLOW_USERS' => 'Разрешить доступ для пользователей',
     'MAINTENANCE_ALLOW_IPS' => 'Разрешить доступ для IP',
-    'CENSOR' => 'Активировать фильтрацию цензуры',
-    'CENSOR_WORDS' => 'Запрещенные слова',
-    'CENSOR_REPLACE' => 'Замена запрещенных слов на',
     'TIMEZONE' => 'Часовой пояс',
-    'THEME' => 'Шаблон',
-    'FAVICON' => 'Favicon',
     'ADMIN_THEME' => 'Цвет темы админ-панели',
     'WATERMARK_ENABLE' => 'Активировать водяной знак?',
     'ATTACHMENT_IMAGE_TYPE' => 'Тип сохраний изображений',
@@ -39,7 +34,4 @@ return [
     'MAILER_TRANSPORT_SMTP_HOST' => 'SMTP сервер',
     'MAILER_TRANSPORT_SMTP_PORT' => 'Порт',
     'MAILER_TRANSPORT_SMTP_ENCRYPTION' => 'Шифрование',
-    'CAPTCHA_CLASS' => 'Капча',
-    'RECAPTCHA_KEY' => 'API ключ (ReCaptcha)',
-    'RECAPTCHA_SECRET' => 'Секретный ключ (ReCaptcha)'
 ];

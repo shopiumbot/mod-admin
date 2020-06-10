@@ -24,7 +24,6 @@ class SettingsController extends AdminController
         ];
 
         $model = new SettingsForm();
-        $oldFavicon = $model->favicon;
         $oldWatermark = $model->attachment_wm_path;
 
 
@@ -40,15 +39,6 @@ class SettingsController extends AdminController
                     $model->attachment_wm_path = 'watermark.' . $attachment_wm_path->extension;
                 } else {
                     $model->attachment_wm_path = $oldWatermark;
-                }
-
-                $favicon = UploadedFile::getInstance($model, 'favicon');
-
-                if ($favicon) {
-                    $favicon->saveAs(Yii::getAlias('@uploads') . DIRECTORY_SEPARATOR . 'favicon.' . $favicon->extension);
-                    $model->favicon = 'favicon.' . $favicon->extension;
-                } else {
-                    $model->favicon = $oldFavicon;
                 }
 
                 $model->save();

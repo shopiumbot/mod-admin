@@ -5,17 +5,20 @@ use panix\engine\bootstrap\ActiveForm;
 
 ?>
 
-
+<?php $form = ActiveForm::begin([
+    'options' => ['enctype' => 'multipart/form-data']
+]); ?>
 <div class="card">
     <div class="card-header">
         <h5><?= $this->context->pageName ?></h5>
     </div>
     <div class="card-body">
-        <?php $form = ActiveForm::begin([
-            'options' => ['enctype' => 'multipart/form-data']
-        ]); ?>
+
         <?php
         echo panix\engine\bootstrap\Tabs::widget([
+            'options' => [
+                'class' => 'nav-pills2 flex-column flex-sm-row nav-tabs-static'
+            ],
             'items' => [
                 [
                     'label' => 'Общие',
@@ -23,32 +26,18 @@ use panix\engine\bootstrap\ActiveForm;
                     'active' => true,
                 ],
                 [
-                    'label' => 'Цензура',
-                    'content' => $this->render('_censor', ['form' => $form, 'model' => $model]),
-                    'headerOptions' => [],
-                ],
-                [
                     'label' => 'Водяной знак',
                     'content' => $this->render('_images', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],
-                ],
-                [
-                    'label' => 'Почта',
-                    'content' => $this->render('_mailer', ['form' => $form, 'model' => $model]),
-                    'headerOptions' => [],
-                ],
-                [
-                    'label' => 'Дата и время',
-                    'content' => $this->render('_datetime', ['form' => $form, 'model' => $model]),
-                    'headerOptions' => [],
-                ],
+                ]
             ],
         ]);
         ?>
-        <div class="card-footer text-center">
-            <?= Html::submitButton(Yii::t('app/default', 'SAVE'), ['class' => 'btn btn-success']) ?>
-        </div>
-        <?php ActiveForm::end(); ?>
+
+
+    </div>
+    <div class="card-footer text-center">
+        <?= Html::submitButton(Yii::t('app/default', 'SAVE'), ['class' => 'btn btn-success']) ?>
     </div>
 </div>
-
+<?php ActiveForm::end(); ?>
