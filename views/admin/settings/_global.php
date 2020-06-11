@@ -12,5 +12,5 @@ use panix\engine\Html;
 
 <?= $form->field($model, 'sitename'); ?>
 <?= $form->field($model, 'email'); ?>
-<?= $form->field($model, 'pagenum'); ?>
 
+<?= $form->field($model, 'pagenum'); ?>

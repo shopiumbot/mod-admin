@@ -14,24 +14,41 @@ class SettingsForm extends SettingsModel
     public $sitename;
     public $pagenum;
     public $email;
-
+    public $empty_cart_text;
+    public $empty_history_text;
     public $watermark_enable;
     public $attachment_wm_path;
     public $attachment_wm_corner;
     public $attachment_wm_offsetx;
     public $attachment_wm_offsety;
+    public $pagenum_telegram;
+
+
+    public $button_text_home;
+    public $button_text_cart;
+    public $button_text_catalog;
+    public $button_text_search;
+    public $button_text_history;
 
     public static function defaultSettings()
     {
         return [
             'email' => 'info@shopiumbot.com',
-            'pagenum' => 20,
+            'pagenum' => 5,
             'sitename' => 'ShopiumBot',
             'watermark_enable' => true,
             'attachment_wm_path' => 'watermark.png',
             'attachment_wm_offsety' => 10,
             'attachment_wm_offsetx' => 10,
             'attachment_wm_corner' => 5,
+            'empty_cart_text' => 'Ваша корзина пустая',
+            'empty_history_text' => 'Ваша история пустая Воспользуйтесь каталогом чтобы ее наполнить',
+
+            'button_text_home' => '🏠 Начало',
+            'button_text_cart' => '🛍 Корзина',
+            'button_text_search' => '🔎 Поиск',
+            'button_text_catalog' => '📂 Каталог',
+            'button_text_history' => '📦 Мои покупки',
 
         ];
     }
@@ -70,20 +87,46 @@ class SettingsForm extends SettingsModel
         ];
     }
 
+
     public function rules()
     {
 
         return [
             [['email'], 'trim'],
             [['watermark_enable'], 'boolean'],
-            [['attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
-            [['email', 'sitename', 'pagenum', 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner'], "required"],
+            [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
+            [[
+                'email',
+                'sitename',
+                'pagenum',
+                'pagenum_telegram',
+                'button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart',
+                'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
+                'empty_cart_text', 'empty_history_text'
+            ], "required"],
             ['email', 'email'],
-            ['attachment_wm_path', 'validateWatermarkFile'],
 
+            [['button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
+
+
+            ['attachment_wm_path', 'validateWatermarkFile'],
+            ['pagenum_telegram', 'in', 'range' => array_keys(self::dropdownPagenum())],
             [['attachment_wm_path'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
         ];
     }
 
+    public static function dropdownPagenum()
+    {
+        return [
+            1 => 1,
+            2 => 2,
+            3 => 3,
+            4 => 4,
+            5 => 5,
+            6 => 6,
+            7 => 7,
+            8 => 8
+        ];
+    }
 
 }

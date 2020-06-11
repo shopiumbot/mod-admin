@@ -26,6 +26,11 @@ use panix\engine\bootstrap\ActiveForm;
                     'active' => true,
                 ],
                 [
+                    'label' => 'Telegram',
+                    'content' => $this->render('_telegram', ['form' => $form, 'model' => $model]),
+                    'headerOptions' => [],
+                ],
+                [
                     'label' => 'Водяной знак',
                     'content' => $this->render('_images', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],
