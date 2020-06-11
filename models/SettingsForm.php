@@ -24,7 +24,7 @@ class SettingsForm extends SettingsModel
     public $pagenum_telegram;
 
 
-    public $button_text_home;
+    public $button_text_start;
     public $button_text_cart;
     public $button_text_catalog;
     public $button_text_search;
@@ -51,7 +51,7 @@ class SettingsForm extends SettingsModel
             ], "required"],
             ['email', 'email'],
 
-            [['button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
+            [['button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
 
 
             ['attachment_wm_path', 'validateWatermarkFile'],
@@ -74,7 +74,7 @@ class SettingsForm extends SettingsModel
             'empty_cart_text' => 'Ваша корзина пустая',
             'empty_history_text' => 'Ваша история пустая Воспользуйтесь каталогом чтобы ее наполнить',
             'label_expire_new' => 7,
-            'button_text_home' => '🏠 Начало',
+            'button_text_start' => '🏠 Начало',
             'button_text_cart' => '🛍 Корзина',
             'button_text_search' => '🔎 Поиск',
             'button_text_catalog' => '📂 Каталог',

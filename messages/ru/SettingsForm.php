@@ -29,6 +29,6 @@ return [
     'BUTTON_TEXT_SEARCH' => 'Текст кнопки "Поиска"',
     'BUTTON_TEXT_CART' => 'Текст кнопки "Корзины"',
     'BUTTON_TEXT_HISTORY' => 'Текст кнопки "Истории"',
-    'BUTTON_TEXT_HOME' => 'Текст кнопки "Главная"',
+    'BUTTON_TEXT_START' => 'Текст кнопки "Главная"',
 
 ];

@@ -12,7 +12,7 @@
 
 
 <?= $form->field($model, 'button_text_catalog')->textInput() ?>
-<?= $form->field($model, 'button_text_home')->textInput() ?>
+<?= $form->field($model, 'button_text_start')->textInput() ?>
 <?= $form->field($model, 'button_text_search')->textInput() ?>
 <?= $form->field($model, 'button_text_history')->textInput() ?>
 <?= $form->field($model, 'button_text_cart')->textInput() ?>
