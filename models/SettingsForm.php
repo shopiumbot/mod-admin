@@ -45,7 +45,7 @@ class SettingsForm extends SettingsModel
                 'sitename',
                 'pagenum',
                 'pagenum_telegram',
-                'button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart',
+                'button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart',
                 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
                 'empty_cart_text', 'empty_history_text'
             ], "required"],
