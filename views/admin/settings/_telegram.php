@@ -16,3 +16,4 @@
 <?= $form->field($model, 'button_text_search')->textInput() ?>
 <?= $form->field($model, 'button_text_history')->textInput() ?>
 <?= $form->field($model, 'button_text_cart')->textInput() ?>
+<?= $form->field($model, 'label_expire_new')->dropDownList($model::labelExpireNew(),['prompt'=>Yii::t('app/default','OFF')]); ?>

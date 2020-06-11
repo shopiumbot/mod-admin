@@ -30,6 +30,34 @@ class SettingsForm extends SettingsModel
     public $button_text_search;
     public $button_text_history;
 
+    public $label_expire_new;
+    public function rules()
+    {
+
+        return [
+            [['label_expire_new'], 'integer'],
+            [['email'], 'trim'],
+            [['watermark_enable'], 'boolean'],
+            [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
+            [[
+                'email',
+                'sitename',
+                'pagenum',
+                'pagenum_telegram',
+                'button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart',
+                'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
+                'empty_cart_text', 'empty_history_text'
+            ], "required"],
+            ['email', 'email'],
+
+            [['button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
+
+
+            ['attachment_wm_path', 'validateWatermarkFile'],
+            ['pagenum_telegram', 'in', 'range' => array_keys(self::dropdownPagenum())],
+            [['attachment_wm_path'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
+        ];
+    }
     public static function defaultSettings()
     {
         return [
@@ -43,7 +71,7 @@ class SettingsForm extends SettingsModel
             'attachment_wm_corner' => 5,
             'empty_cart_text' => 'Ваша корзина пустая',
             'empty_history_text' => 'Ваша история пустая Воспользуйтесь каталогом чтобы ее наполнить',
-
+            'label_expire_new' => 7,
             'button_text_home' => '🏠 Начало',
             'button_text_cart' => '🛍 Корзина',
             'button_text_search' => '🔎 Поиск',
@@ -86,34 +114,27 @@ class SettingsForm extends SettingsModel
             10 => self::t('WM_POS_REPEAT'),
         ];
     }
-
-
-    public function rules()
+    public static function labelExpireNew()
     {
-
         return [
-            [['email'], 'trim'],
-            [['watermark_enable'], 'boolean'],
-            [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
-            [[
-                'email',
-                'sitename',
-                'pagenum',
-                'pagenum_telegram',
-                'button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart',
-                'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
-                'empty_cart_text', 'empty_history_text'
-            ], "required"],
-            ['email', 'email'],
-
-            [['button_text_catalog', 'button_text_home', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
-
-
-            ['attachment_wm_path', 'validateWatermarkFile'],
-            ['pagenum_telegram', 'in', 'range' => array_keys(self::dropdownPagenum())],
-            [['attachment_wm_path'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
+            1 => self::t('LABEL_NEW_DAYS', ['n' => 1]),
+            2 => self::t('LABEL_NEW_DAYS', ['n' => 2]),
+            3 => self::t('LABEL_NEW_DAYS', ['n' => 3]),
+            4 => self::t('LABEL_NEW_DAYS', ['n' => 4]),
+            5 => self::t('LABEL_NEW_DAYS', ['n' => 5]),
+            6 => self::t('LABEL_NEW_DAYS', ['n' => 6]),
+            7 => self::t('LABEL_NEW_DAYS', ['n' => 7]),
+            8 => self::t('LABEL_NEW_DAYS', ['n' => 8]),
+            9 => self::t('LABEL_NEW_DAYS', ['n' => 9]),
+            10 => self::t('LABEL_NEW_DAYS', ['n' => 10]),
+            11 => self::t('LABEL_NEW_DAYS', ['n' => 11]),
+            12 => self::t('LABEL_NEW_DAYS', ['n' => 12]),
+            13 => self::t('LABEL_NEW_DAYS', ['n' => 13]),
+            14 => self::t('LABEL_NEW_DAYS', ['n' => 14]),
         ];
     }
+
+
 
     public static function dropdownPagenum()
     {
