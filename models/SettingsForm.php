@@ -29,7 +29,7 @@ class SettingsForm extends SettingsModel
     public $button_text_catalog;
     public $button_text_search;
     public $button_text_history;
-
+    public $timezone;
     public $label_expire_new;
     public function rules()
     {
@@ -40,6 +40,7 @@ class SettingsForm extends SettingsModel
             [['watermark_enable'], 'boolean'],
             [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
+                'timezone',
                 'email',
                 'sitename',
                 'pagenum',
@@ -61,6 +62,7 @@ class SettingsForm extends SettingsModel
     public static function defaultSettings()
     {
         return [
+            'timezone' => 'Europe/Kiev',
             'email' => 'info@shopiumbot.com',
             'pagenum' => 5,
             'sitename' => 'ShopiumBot',
