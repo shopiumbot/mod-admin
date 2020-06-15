@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use shopium\mod\telegram\models\Chat;
-
+$api = Yii::$app->telegram;
 $user = Yii::$app->user->identity;
 
 $me = Request::getMe();
@@ -120,7 +120,7 @@ if ($chats) {
                             echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
                         }
                     }*/
-                    echo Html::img($this->context->botPhoto, ['class' => 'mb-4', 'width' => 100]);
+                    echo Html::img($api->getPhoto(), ['class' => 'mb-4', 'width' => 100]);
 
                     ?>
                 <?php } ?>
