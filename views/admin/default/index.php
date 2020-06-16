@@ -74,7 +74,79 @@ if ($chats) {
         <?= Yii::$app->session->getFlash('success-webhook'); ?>
     </div>
 <?php } ?>
+<div class="row">
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-left border-orange">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <span class="text-orange display-6"><i class="icon-user-outline"></i></span>
+                    </div>
+                    <div class="ml-auto">
+                        <?php
+                        $usersCount = \shopium\mod\telegram\models\User::find()->where(['is_bot'=>0])->count();
+                        ?>
+                        <h2><?= $usersCount; ?></h2>
+                        <h6 class="text-orange">Пользователей</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+        <div class="card border-left border-info">
+            <div class="card-body">
+                <div class="d-flex no-block align-items-center">
+                    <div>
+                        <span class="text-info display-6"><i class="icon-comments"></i></span>
+                    </div>
+                    <div class="ml-auto">
+                        <?php
+                        $messagesCount = \shopium\mod\telegram\models\Message::find()
+                            ->between(date('Y-m-d').' 00:00:00',date('Y-m-d').' 23:59:59','date')
+                            ->count();
+                        ?>
+                        <h2><?= $messagesCount; ?></h2>
+                        <h6 class="text-info">Сообщений <span class="text-muted">за сегодня</span></h6>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex no-block align-items-center">
+                            <div>
+                                <?php
+                                $a = \core\modules\shop\models\Product::find()->count();
+                                $b = Yii::$app->params['plan'][Yii::$app->user->planId]['product_limit'];
+                                $diff = $b - $a;
+                                $percent = $a / $b * 100;
+                                ?>
+                                <h3><?= $percent; ?>%</h3>
+                                <h6 class="card-subtitle">Всего продукции <strong><?= $a; ?></strong> из <strong><?= $b; ?></strong></h6>
+                            </div>
+                            <div class="ml-auto">
+                                <span class="text-success display-6"><i class="ti-layout-slider-alt"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: <?=$percent; ?>%;" aria-valuenow="<?= $percent; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-4">
