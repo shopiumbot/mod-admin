@@ -217,7 +217,14 @@ if ($chats) {
                                     }
                                     ?>
                                 </div>
-                                <div class="col-lg-6 text-lg-right"><?= Html::a('Оплатить', '', ['class' => 'btn btn-success']); ?></div>
+
+
+
+                                <div class="col-lg-6 text-lg-right">
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal">
+                                        Оплатить
+                                    </button>
+                                </div>
                             </div>
 
                         </div>
@@ -227,5 +234,25 @@ if ($chats) {
             </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="paymentModalLabel">Оплатить тариф: <span class="badge badge-success"><?= Yii::$app->params['plan'][$user->plan_id]['name']; ?></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                123
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Заказыть</button>
+                <button type="button" class="btn btn-primary">Оплатить</button>
+            </div>
+        </div>
     </div>
 </div>
