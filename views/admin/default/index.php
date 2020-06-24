@@ -167,10 +167,14 @@ if ($chats) {
                         if (!empty($result->url)) {
                             if ($result->url === Yii::$app->user->webhookUrl) {
                                 echo Html::a('☹️ Отписать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
+                            }else{
+                                echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                             }
                         } else {
                             echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                         }
+                    }else{
+                        echo '2';
                     }
                     ?>
                 </div>
