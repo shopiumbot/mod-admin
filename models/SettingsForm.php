@@ -22,7 +22,9 @@ class SettingsForm extends SettingsModel
     public $attachment_wm_offsetx;
     public $attachment_wm_offsety;
     public $pagenum_telegram;
-
+    public $enable_brands;
+    public $enable_new;
+    public $enable_discounts;
 
     public $button_text_start;
     public $button_text_cart;
@@ -37,7 +39,7 @@ class SettingsForm extends SettingsModel
         return [
             [['label_expire_new'], 'integer'],
             [['email'], 'trim'],
-            [['watermark_enable'], 'boolean'],
+            [['watermark_enable','enable_brands','enable_new','enable_discounts'], 'boolean'],
             [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',

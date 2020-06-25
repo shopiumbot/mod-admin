@@ -9,7 +9,9 @@
 <?= $form->field($model, 'empty_history_text')->textInput() ?>
 
 <?= $form->field($model, 'pagenum_telegram')->dropDownList($model::dropdownPagenum()); ?>
-
+<?= $form->field($model, 'enable_brands')->checkbox() ?>
+<?= $form->field($model, 'enable_new')->checkbox() ?>
+<?= $form->field($model, 'enable_discounts')->checkbox() ?>
 
 <?= $form->field($model, 'button_text_catalog')->textInput() ?>
 <?= $form->field($model, 'button_text_start')->textInput() ?>
