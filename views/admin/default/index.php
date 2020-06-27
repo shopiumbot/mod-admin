@@ -5,6 +5,8 @@ use yii\helpers\Url;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use shopium\mod\telegram\models\Chat;
+
+
 $api = Yii::$app->telegram;
 $user = Yii::$app->user->identity;
 
@@ -84,7 +86,7 @@ if ($chats) {
                     </div>
                     <div class="ml-auto">
                         <?php
-                        $usersCount = \shopium\mod\telegram\models\User::find()->where(['is_bot'=>0])->count();
+                        $usersCount = \shopium\mod\telegram\models\User::find()->where(['is_bot' => 0])->count();
                         ?>
                         <h2><?= $usersCount; ?></h2>
                         <h6 class="text-orange">Пользователей</h6>
@@ -103,7 +105,7 @@ if ($chats) {
                     <div class="ml-auto">
                         <?php
                         $messagesCount = \shopium\mod\telegram\models\Message::find()
-                            ->between(date('Y-m-d').' 00:00:00',date('Y-m-d').' 23:59:59','date')
+                            ->between(date('Y-m-d') . ' 00:00:00', date('Y-m-d') . ' 23:59:59', 'date')
                             ->count();
                         ?>
                         <h2><?= $messagesCount; ?></h2>
@@ -129,7 +131,8 @@ if ($chats) {
                                 $percent = $a / $b * 100;
                                 ?>
                                 <h3><?= $percent; ?>%</h3>
-                                <h6 class="card-subtitle">Всего продукции <strong><?= $a; ?></strong> из <strong><?= $b; ?></strong></h6>
+                                <h6 class="card-subtitle">Всего продукции <strong><?= $a; ?></strong> из
+                                    <strong><?= $b; ?></strong></h6>
                             </div>
                             <div class="ml-auto">
                                 <span class="text-success display-6"><i class="ti-layout-slider-alt"></i></span>
@@ -138,7 +141,8 @@ if ($chats) {
                     </div>
                     <div class="col-12">
                         <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: <?=$percent; ?>%;" aria-valuenow="<?= $percent; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                            <div class="progress-bar bg-success" role="progressbar" style="width: <?= $percent; ?>%;"
+                                 aria-valuenow="<?= $percent; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                     </div>
                 </div>
@@ -167,13 +171,13 @@ if ($chats) {
                         if (!empty($result->url)) {
                             if ($result->url === Yii::$app->user->webhookUrl) {
                                 echo Html::a('☹️ Отписать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
-                            }else{
+                            } else {
                                 echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                             }
                         } else {
                             echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                         }
-                    }else{
+                    } else {
                         echo '2';
                     }
                     ?>
@@ -184,18 +188,18 @@ if ($chats) {
                 <?php
                 if ($me->isOk()) {
                     $result = $me->getResult();
-                   /* $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
+                    /* $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
 
-                    if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
-                        $photo = $profile->getResult()->photos[0][2];
-                        $file = Request::getFile(['file_id' => $photo['file_id']]);
-                        if (!file_exists(Yii::getAlias('@app/web/telegram/downloads') . DIRECTORY_SEPARATOR . $file->getResult()->file_path)) {
-                            $download = Request::downloadFile($file->getResult());
+                     if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
+                         $photo = $profile->getResult()->photos[0][2];
+                         $file = Request::getFile(['file_id' => $photo['file_id']]);
+                         if (!file_exists(Yii::getAlias('@app/web/telegram/downloads') . DIRECTORY_SEPARATOR . $file->getResult()->file_path)) {
+                             $download = Request::downloadFile($file->getResult());
 
-                        } else {
-                            echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
-                        }
-                    }*/
+                         } else {
+                             echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
+                         }
+                     }*/
                     echo Html::img($api->getPhoto(), ['class' => 'mb-4', 'width' => 100]);
 
                     ?>
@@ -223,9 +227,9 @@ if ($chats) {
                                 </div>
 
 
-
                                 <div class="col-lg-6 text-lg-right">
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal">
+                                    <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#paymentModal">
                                         Оплатить
                                     </button>
                                 </div>
@@ -241,17 +245,37 @@ if ($chats) {
     </div>
 </div>
 
-<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="paymentModalLabel">Оплатить тариф: <span class="badge badge-success"><?= Yii::$app->params['plan'][$user->plan_id]['name']; ?></span></h5>
+                <h5 class="modal-title" id="paymentModalLabel">Оплатить тариф: <span
+                            class="badge badge-success"><?= Yii::$app->params['plan'][$user->plan_id]['name']; ?></span>
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                123
+
+                <?php
+
+                $liqpay = new \shopium\mod\telegram\components\LiqPay(Yii::$app->params['payment']['liqpay']['public_key'], Yii::$app->params['payment']['liqpay']['private_key']);
+
+
+                $html = $liqpay->cnb_form(array(
+                    'action' => 'pay',
+                    'amount' => '1',
+                    'currency' => 'UAH',
+                    'description' => Yii::$app->params['plan'][Yii::$app->user->planId]['name'],
+                    'order_id' => \panix\engine\CMS::gen(10),
+                    'version' => '3',
+                    'result_url'=>'https://shopiumbot.com/payment/liqpay/result',
+                    'server_url'=>'https://shopiumbot.com/payment/liqpay/success'
+                ));
+                echo $html;
+                ?>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Заказыть</button>

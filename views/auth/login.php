@@ -45,7 +45,7 @@ $form = ActiveForm::begin([
     ],
     'template' => '<div class="col"><div class="input-group"><div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-{icon}"></i></span>
-                </div>{label}{input}<div class="input-group-append" style="position: absolute;right: 1px;background: #fff;top: 1px;">{switch}</div>{hint}{error}</div></div>'
+                </div>{label}{input}<div class="input-group-append" style="position: absolute;right: 1px;background: #fff;top: 1px;bottom: 1px;z-index:100">{switch}</div>{hint}{error}</div></div>'
 ])
     ->passwordInput(['class' => 'form-control', 'placeholder' => $model->getAttributeLabel('password')])
     ->label(false);
