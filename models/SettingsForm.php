@@ -33,6 +33,8 @@ class SettingsForm extends SettingsModel
     public $button_text_history;
     public $timezone;
     public $label_expire_new;
+
+    public $liqpay_provider;
     public function rules()
     {
 
@@ -53,7 +55,7 @@ class SettingsForm extends SettingsModel
             ], "required"],
             ['email', 'email'],
 
-            [['button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart'], 'string','min'=>3],
+            [['button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart','liqpay_provider'], 'string','min'=>3],
 
 
             ['attachment_wm_path', 'validateWatermarkFile'],
@@ -72,6 +74,7 @@ class SettingsForm extends SettingsModel
             'enable_brands' => true,
             'enable_new' => true,
             'enable_discounts' => false,
+            'liqpay_provider'=>'',
             'attachment_wm_path' => 'watermark.png',
             'attachment_wm_offsety' => 10,
             'attachment_wm_offsetx' => 10,
