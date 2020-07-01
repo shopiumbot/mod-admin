@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use Longman\TelegramBot\Request;
 use Longman\TelegramBot\Entities\InlineKeyboardButton;
 use shopium\mod\telegram\models\Chat;
-
+use shopium\mod\telegram\components\LiqPay;
 
 $api = Yii::$app->telegram;
 $user = Yii::$app->user->identity;
@@ -76,6 +76,19 @@ if ($chats) {
         <?= Yii::$app->session->getFlash('success-webhook'); ?>
     </div>
 <?php } ?>
+<?php if (Yii::$app->session->hasFlash('success-payment')) { ?>
+    <div class="alert alert-success">
+        <?= Yii::$app->session->getFlash('success-payment'); ?>
+    </div>
+<?php } ?>
+
+<?php if (Yii::$app->session->hasFlash('error-payment')) { ?>
+    <div class="alert alert-danger">
+        <?= Yii::$app->session->getFlash('error-payment'); ?>
+    </div>
+<?php } ?>
+
+
 <div class="row">
     <div class="col-lg-3 col-md-6">
         <div class="card border-left border-orange">
@@ -205,6 +218,12 @@ if ($chats) {
                     ?>
                 <?php } ?>
 
+
+                    <div class="form-group row">
+                        <div class="col-sm-5 col-lg-5"><label>Ваш ID</label></div>
+                        <div class="col-sm-7 col-lg-7"><?= $user->id; ?></div>
+                    </div>
+
                 <?php if ($user->expire) { ?>
                     <div class="form-group row">
                         <div class="col-sm-5 col-lg-5"><label>Продлен до</label></div>
@@ -230,7 +249,7 @@ if ($chats) {
                                 <div class="col-lg-6 text-lg-right">
                                     <button type="button" class="btn btn-success" data-toggle="modal"
                                             data-target="#paymentModal">
-                                        Оплатить
+                                        Продлить
                                     </button>
                                 </div>
                             </div>
@@ -259,25 +278,97 @@ if ($chats) {
             </div>
             <div class="modal-body">
 
+                <h3>LiqPay</h3>
+                <div class="alert alert-warning">
+                    К общей стоимости будет добавлена комиссии сервиса <strong>2.75%</strong>
+                </div>
                 <?php
+                $liqPayConfig = Yii::$app->params['payment']['liqpay'];
+                $liqpay = new LiqPay($liqPayConfig['public_key'], $liqPayConfig['private_key']);
 
-                $liqpay = new \shopium\mod\telegram\components\LiqPay(Yii::$app->params['payment']['liqpay']['public_key'], Yii::$app->params['payment']['liqpay']['private_key']);
-
-
-                $html = $liqpay->cnb_form(array(
-                    'action' => 'pay',
-                    'amount' => '1',
-                    'currency' => 'UAH',
-                    'description' => Yii::$app->params['plan'][Yii::$app->user->planId]['name'],
-                    'order_id' => \panix\engine\CMS::gen(10),
-                    'version' => '3',
-                    'result_url'=>'https://shopiumbot.com/payment/liqpay/result',
-                    'server_url'=>'https://shopiumbot.com/payment/liqpay/success'
-                ));
-                echo $html;
                 ?>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <?php
+
+                        $price1 = Yii::$app->params['plan'][Yii::$app->user->planId]['prices'][1];
+
+                        $params = [];
+                        $params['action'] = 'pay';
+                        $params['amount'] = $price1 + ($price1 / 100 * 2.75);
+                        $params['currency'] = 'UAH';
+                       // $params['paytypes'] = 'card';
+
+                        $params['description'] = 'Оплата тарифного плана "' . Yii::$app->params['plan'][Yii::$app->user->planId]['name'] . '" на 1 месяц + (комиссия 2.75%)';
+                        $params['order_id'] = \panix\engine\CMS::gen(5) . '-' . Yii::$app->user->id . '-1';
+                        $params['version'] = '3';
+                        $params['result_url'] = Url::to('/user/payment-result', true);
+                        $params['server_url'] = Url::to('/user/payment-success', true);
+                        $params['public_key'] = $liqPayConfig['public_key'];
+                        if ($params['currency'] == LiqPay::CURRENCY_RUR) {
+                            $params['currency'] = LiqPay::CURRENCY_RUB;
+                        }
+
+                        $signature = $liqpay->cnb_signature($params);
+
+                        echo Html::beginForm('https://www.liqpay.ua/api/3/checkout', 'POST', ['accept-charset' => 'utf-8']);
+                        echo Html::hiddenInput('data', base64_encode(json_encode($params)));
+                        echo Html::hiddenInput('signature', $signature);
+                        echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
+                        echo Html::endForm();
+                        ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php
+
+                        $price12 = Yii::$app->params['plan'][Yii::$app->user->planId]['prices'][12] * 12;
+                        $params = [];
+                        $params['action'] = 'pay';
+                        $params['amount'] = $price12 + ($price12 / 100 * 2.75);
+                        $params['currency'] = 'UAH';
+                        $params['description'] = 'Оплата тарифного плана "' . Yii::$app->params['plan'][Yii::$app->user->planId]['name'] . '" на 1 год + (комиссия 2.75%)';
+                        $params['order_id'] = \panix\engine\CMS::gen(5) . '-' . Yii::$app->user->id . '-12';
+                        $params['version'] = '3';
+                        $params['result_url'] = Url::to('/user/payment-result', true);
+                        $params['server_url'] = Url::to('/user/payment-success', true);
+                        $params['public_key'] = $liqPayConfig['public_key'];
+                        if ($params['currency'] == LiqPay::CURRENCY_RUR) {
+                            $params['currency'] = LiqPay::CURRENCY_RUB;
+                        }
+
+                        $signature = $liqpay->cnb_signature($params);
+                        echo Html::beginForm('https://www.liqpay.ua/api/3/checkout', 'POST', ['accept-charset' => 'utf-8']);
+                        echo Html::hiddenInput('data', base64_encode(json_encode($params)));
+                        echo Html::hiddenInput('signature', $signature);
+                        echo Html::submitButton("Продлить на 1 год - {$price12} грн", ['class' => 'btn btn-success']);
+                        echo '👍 Экономия: ' . (($price1 * 12) - $price12) . ' грн.';
+                        echo Html::endForm();
+                        ?>
+                    </div>
+                </div>
+                <h3 class="mt-4">Продлить с баланса</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <?php
+                        echo Html::beginForm(['/user/payment-balance'], 'GET');
+                        echo Html::hiddenInput('month', 1);
+                        echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
+                        echo Html::endForm();
+                        ?>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php
+                        echo Html::beginForm(['/user/payment-balance'], 'GET');
+                        echo Html::hiddenInput('month', 12);
+                        echo Html::submitButton("Продлить на 1 год - {$price12} грн", ['class' => 'btn btn-success']);
+                        echo '👍 Экономия: ' . (($price1 * 12) - $price12) . ' грн.';
+                        echo Html::endForm();
+                        ?>
+                    </div>
+                </div>
+
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-none">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Заказыть</button>
                 <button type="button" class="btn btn-primary">Оплатить</button>
             </div>

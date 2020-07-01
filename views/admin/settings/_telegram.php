@@ -7,7 +7,6 @@
 
 <?= $form->field($model, 'empty_cart_text')->textInput() ?>
 <?= $form->field($model, 'empty_history_text')->textInput() ?>
-<?= $form->field($model, 'liqpay_provider')->textInput() ?>
 <?= $form->field($model, 'pagenum_telegram')->dropDownList($model::dropdownPagenum()); ?>
 <?= $form->field($model, 'enable_brands')->checkbox() ?>
 <?= $form->field($model, 'enable_new')->checkbox() ?>

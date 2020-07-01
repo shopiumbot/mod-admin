@@ -34,6 +34,11 @@ use panix\engine\bootstrap\ActiveForm;
                     'label' => 'Водяной знак',
                     'content' => $this->render('_images', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],
+                ],
+                [
+                    'label' => 'Платежные системы',
+                    'content' => $this->render('_payments', ['form' => $form, 'model' => $model]),
+                    'headerOptions' => [],
                 ]
             ],
         ]);
