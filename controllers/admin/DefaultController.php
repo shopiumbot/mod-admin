@@ -27,7 +27,7 @@ class DefaultController extends AdminController
     public function actionIndex()
     {
 
-        $this->pageName = Yii::t('app/admin', 'CMS');
+        $this->pageName = Yii::t('admin/default', 'CMS');
         $this->breadcrumbs[] = $this->pageName;
         $this->clearCache();
         $this->clearAssets();
