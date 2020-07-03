@@ -262,6 +262,14 @@ if ($chats) {
         </div>
 
     </div>
+    <div class="card d-none">
+        <div class="card-header">
+            Источники входа
+        </div>
+        <div class="card-body">
+            asd
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel"
@@ -350,7 +358,7 @@ if ($chats) {
                 <div class="row">
                     <div class="col-sm-6">
                         <?php
-                        echo Html::beginForm(['/user/payment-balance'], 'GET');
+                        echo Html::beginForm(['/user/payment-balance'], 'GET',['onsubmit'=>"return confirm('Вы уверееы что хотите продлиить тариф');"]);
                         echo Html::hiddenInput('month', 1);
                         echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
                         echo Html::endForm();
