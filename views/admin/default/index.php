@@ -358,7 +358,7 @@ if ($chats) {
                 <div class="row">
                     <div class="col-sm-6">
                         <?php
-                        echo Html::beginForm(['/user/payment-balance'], 'GET',['onsubmit'=>"return confirm('Вы уверееы что хотите продлиить тариф');"]);
+                        echo Html::beginForm(['/user/payment-balance'], 'GET',['onsubmit'=>"return confirm('Вы уверены что хотите продлить тариф, с личного баланса?');"]);
                         echo Html::hiddenInput('month', 1);
                         echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
                         echo Html::endForm();
