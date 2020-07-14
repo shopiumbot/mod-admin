@@ -1,7 +1,6 @@
 <?php
 return [
     'EMAIL' => 'E-mail администратора',
-    'SITENAME' => 'Название сайта',
     'PAGENUM' => 'Количество материала в модулях панели администратора',
     'YANDEXKASSA_PROVIDER' => 'ЯндексКасса',
     'TRANZZO_PROVIDER' => 'Tranzzo',

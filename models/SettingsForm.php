@@ -11,7 +11,6 @@ class SettingsForm extends SettingsModel
 {
     protected $module = 'admin';
     public static $category = 'app';
-    public $sitename;
     public $pagenum;
     public $email;
     public $empty_cart_text;
@@ -50,7 +49,6 @@ class SettingsForm extends SettingsModel
             [[
                 'timezone',
                 'email',
-                'sitename',
                 'pagenum',
                 'pagenum_telegram',
                 'button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart',
@@ -82,7 +80,6 @@ class SettingsForm extends SettingsModel
             'timezone' => 'Europe/Kiev',
             'email' => 'info@shopiumbot.com',
             'pagenum' => 5,
-            'sitename' => 'ShopiumBot',
             'watermark_enable' => true,
             'enable_brands' => true,
             'enable_new' => true,
