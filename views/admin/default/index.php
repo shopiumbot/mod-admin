@@ -12,7 +12,6 @@ $user = Yii::$app->user->identity;
 
 $me = Request::getMe();
 $webhook_info = Request::getWebhookInfo();
-
 $chats = Chat::find()->asArray()->all();
 if ($chats) {
     foreach ($chats as $chat) {
@@ -170,59 +169,75 @@ if ($chats) {
         <div class="card">
             <div class="card-header">
                 <?php
-                if ($me->isOk()) { ?>
-                    Подключен бот: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
-                <?php } else { ?>
-                    Бот не подключен!
-                <?php } ?>
+
+
+
+
+
+                    if ($me->isOk()) { ?>
+                        Подключен бот: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
+                    <?php } else { ?>
+                        Бот не подключен!
+                    <?php } ?>
+                    <?php
+
+                ?>
                 <div class="float-right">
                     <?php
 
-                    if ($webhook_info->isOk()) {
-                        $result = $webhook_info->getResult();
 
-                        if (!empty($result->url)) {
-                            if ($result->url === Yii::$app->user->webhookUrl) {
-                                echo Html::a('☹️ Отписать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
+                        if ($webhook_info->isOk()) {
+                            $result = $webhook_info->getResult();
+
+                            if (!empty($result->url)) {
+                                if ($result->url === Yii::$app->user->webhookUrl) {
+                                    echo Html::a('☹️ Отписать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
+                                } else {
+                                    echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
+                                }
                             } else {
                                 echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                             }
                         } else {
-                            echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
+                            echo '2';
                         }
-                    } else {
-                        echo '2';
-                    }
+
                     ?>
                 </div>
             </div>
             <div class="card-body">
 
                 <?php
-                if ($me->isOk()) {
-                    $result = $me->getResult();
-                    /* $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
+                try {
+                    if ($me->isOk()) {
+                        $result = $me->getResult();
+                        /* $profile = Request::getUserProfilePhotos(['user_id' => $result->id]); //812367093 me
 
-                     if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
-                         $photo = $profile->getResult()->photos[0][2];
-                         $file = Request::getFile(['file_id' => $photo['file_id']]);
-                         if (!file_exists(Yii::getAlias('@app/web/telegram/downloads') . DIRECTORY_SEPARATOR . $file->getResult()->file_path)) {
-                             $download = Request::downloadFile($file->getResult());
+                         if ($profile->getResult()->photos && isset($profile->getResult()->photos[0])) {
+                             $photo = $profile->getResult()->photos[0][2];
+                             $file = Request::getFile(['file_id' => $photo['file_id']]);
+                             if (!file_exists(Yii::getAlias('@app/web/telegram/downloads') . DIRECTORY_SEPARATOR . $file->getResult()->file_path)) {
+                                 $download = Request::downloadFile($file->getResult());
 
-                         } else {
-                             echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
-                         }
-                     }*/
-                    echo Html::img($api->getPhoto(), ['class' => 'mb-4', 'width' => 100]);
+                             } else {
+                                 echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
+                             }
+                         }*/
+                        echo Html::img($api->getPhoto(), ['class' => 'mb-4', 'width' => 100]);
 
-                    ?>
-                <?php } ?>
+                        ?>
+                    <?php }
+
+                } catch (Exception $e) {
+                    echo '34';
+                }
+                ?>
 
 
-                    <div class="form-group row">
-                        <div class="col-sm-5 col-lg-5"><label>Ваш ID</label></div>
-                        <div class="col-sm-7 col-lg-7"><?= $user->id; ?></div>
-                    </div>
+                <div class="form-group row">
+                    <div class="col-sm-5 col-lg-5"><label>Ваш ID</label></div>
+                    <div class="col-sm-7 col-lg-7"><?= $user->id; ?></div>
+                </div>
 
                 <?php if ($user->expire) { ?>
                     <div class="form-group row">
@@ -305,7 +320,7 @@ if ($chats) {
                         $params['action'] = 'pay';
                         $params['amount'] = $price1 + ($price1 / 100 * 2.75);
                         $params['currency'] = 'UAH';
-                       // $params['paytypes'] = 'card';
+                        // $params['paytypes'] = 'card';
 
                         $params['description'] = 'Оплата тарифного плана "' . Yii::$app->params['plan'][Yii::$app->user->planId]['name'] . '" на 1 месяц + (комиссия 2.75%)';
                         $params['order_id'] = \panix\engine\CMS::gen(5) . '-' . Yii::$app->user->id . '-1';
@@ -358,7 +373,7 @@ if ($chats) {
                 <div class="row">
                     <div class="col-sm-6">
                         <?php
-                        echo Html::beginForm(['/user/payment-balance'], 'GET',['onsubmit'=>"return confirm('Вы уверены что хотите продлить тариф, с личного баланса?');"]);
+                        echo Html::beginForm(['/user/payment-balance'], 'GET', ['onsubmit' => "return confirm('Вы уверены что хотите продлить тариф, с личного баланса?');"]);
                         echo Html::hiddenInput('month', 1);
                         echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
                         echo Html::endForm();
