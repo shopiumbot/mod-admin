@@ -3,10 +3,12 @@
 namespace shopium\mod\admin\controllers;
 
 use core\components\controllers\WebController;
+use shopium\mod\telegram\models\User;
 use Yii;
 use shopium\mod\admin\models\LoginForm;
 use core\components\controllers\AdminController;
 use yii\filters\AccessControl;
+use yii\web\HttpException;
 
 /**
  * Class AuthController
@@ -38,6 +40,22 @@ class AuthController extends WebController
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * @param $token
+     * @return \yii\web\Response
+     * @throws HttpException
+     */
+    public function actionEnter($token)
+    {
+        /* @var $identity User */
+        $class = Yii::$app->user->identityClass;
+        $identity = $class::findIdentityByAccessToken($token);
+        if ($identity && Yii::$app->user->login($identity)) {
+            return $this->redirect(['/admin']);
+        }
+        throw new HttpException(404, Yii::t('app/error', 404));
     }
 
 }
