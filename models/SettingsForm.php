@@ -38,13 +38,14 @@ class SettingsForm extends SettingsModel
     public $liqpay_provider;
     public $yandexKassa_provider;
     public $tranzzo_provider;
+
     public function rules()
     {
 
         return [
             [['label_expire_new'], 'integer'],
             [['email'], 'trim'],
-            [['watermark_enable','enable_brands','enable_new','enable_discounts','liqpay_percent'], 'boolean'],
+            [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent'], 'boolean'],
             [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',
@@ -66,7 +67,7 @@ class SettingsForm extends SettingsModel
                 'liqpay_provider',
                 'yandexKassa_provider',
                 'tranzzo_provider',
-            ], 'string','min'=>3],
+            ], 'string', 'min' => 3],
 
 
             ['attachment_wm_path', 'validateWatermarkFile'],
@@ -74,6 +75,7 @@ class SettingsForm extends SettingsModel
             [['attachment_wm_path'], 'file', 'skipOnEmpty' => true, 'extensions' => ['png', 'jpg']],
         ];
     }
+
     public static function defaultSettings()
     {
         return [
@@ -84,13 +86,14 @@ class SettingsForm extends SettingsModel
             'enable_brands' => true,
             'enable_new' => true,
             'enable_discounts' => false,
-            'liqpay_provider'=>'',
-            'yandexKassa_provider'=>'',
-            'tranzzo_provider'=>'',
+            'liqpay_provider' => '',
+            'yandexKassa_provider' => '',
+            'tranzzo_provider' => '',
             'attachment_wm_path' => 'watermark.png',
             'attachment_wm_offsety' => 10,
             'attachment_wm_offsetx' => 10,
             'attachment_wm_corner' => 5,
+            'pagenum_telegram' => 5,
             'empty_cart_text' => 'Ваша корзина пустая',
             'empty_history_text' => 'Ваша история пустая Воспользуйтесь каталогом чтобы ее наполнить',
             'label_expire_new' => 7,
@@ -136,6 +139,7 @@ class SettingsForm extends SettingsModel
             10 => self::t('WM_POS_REPEAT'),
         ];
     }
+
     public static function labelExpireNew()
     {
         return [
@@ -155,7 +159,6 @@ class SettingsForm extends SettingsModel
             14 => self::t('LABEL_NEW_DAYS', ['n' => 14]),
         ];
     }
-
 
 
     public static function dropdownPagenum()
