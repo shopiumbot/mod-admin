@@ -223,7 +223,7 @@ if ($chats) {
                                  echo Html::img('/telegram/downloads/' . $file->getResult()->file_path, ['class' => 'mb-4', 'width' => 100]);
                              }
                          }*/
-                        echo Html::img($api->getPhoto(), ['class' => 'mb-4', 'width' => 100]);
+                        echo Html::img($api->getPhoto(), ['class' => 'mb-4 rounded-circle', 'width' => 100]);
 
                         ?>
                     <?php }
