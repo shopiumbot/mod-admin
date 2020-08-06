@@ -39,13 +39,15 @@ class SettingsForm extends SettingsModel
     public $yandexKassa_provider;
     public $tranzzo_provider;
 
+
+    public $availability_hide;
     public function rules()
     {
 
         return [
             [['label_expire_new'], 'integer'],
             [['email'], 'trim'],
-            [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent'], 'boolean'],
+            [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent','availability_hide'], 'boolean'],
             [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',
@@ -54,7 +56,7 @@ class SettingsForm extends SettingsModel
                 'pagenum_telegram',
                 'button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart',
                 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
-                'empty_cart_text', 'empty_history_text'
+                'empty_cart_text', 'empty_history_text',
             ], "required"],
             ['email', 'email'],
 

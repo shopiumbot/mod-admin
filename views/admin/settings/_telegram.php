@@ -3,8 +3,9 @@
  * @var $form \panix\engine\bootstrap\ActiveForm
  * @var $model \shopium\mod\admin\models\SettingsForm
  */
-?>
 
+?>
+<?= $form->field($model, 'availability_hide')->checkbox() ?>
 <?= $form->field($model, 'empty_cart_text')->textInput() ?>
 <?= $form->field($model, 'empty_history_text')->textInput() ?>
 <?= $form->field($model, 'pagenum_telegram')->dropDownList($model::dropdownPagenum()); ?>
