@@ -41,13 +41,14 @@ class SettingsForm extends SettingsModel
 
 
     public $availability_hide;
+
     public function rules()
     {
 
         return [
             [['label_expire_new'], 'integer'],
             [['email'], 'trim'],
-            [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent','availability_hide'], 'boolean'],
+            [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent', 'availability_hide'], 'boolean'],
             [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',
@@ -104,6 +105,7 @@ class SettingsForm extends SettingsModel
             'button_text_search' => '🔎 Поиск',
             'button_text_catalog' => '📂 Каталог',
             'button_text_history' => '📦 Мои покупки',
+            'availability_hide' => false,
 
         ];
     }
