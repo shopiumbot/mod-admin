@@ -170,10 +170,6 @@ if ($chats) {
             <div class="card-header">
                 <?php
 
-
-
-
-
                     if ($me->isOk()) { ?>
                         Подключен бот: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
                     <?php } else { ?>
