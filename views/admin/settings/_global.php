@@ -13,7 +13,7 @@ use panix\engine\Html;
 <?= $form->field($model, 'email'); ?>
 <?= $form->field($model, 'timezone')->dropDownList(TimeZoneHelper::getTimeZoneData(), []); ?>
 <?= $form->field($model, 'pagenum'); ?>
-<?= $form->field($model, 'tpl_product')->widget(\panix\engine\assets\codemirror\CodeMirrorTextArea::class, [
+<?= $form->field($model, 'tpl_product')->widget(\panix\ext\codemirror\CodeMirrorTextArea::class, [
     'mode' => 'twig',
     //'clientOptions'=>[
     //    'mode'=>['name'=>'twig','base'=>'text/html']
