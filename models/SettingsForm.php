@@ -2,6 +2,7 @@
 
 namespace shopium\mod\admin\models;
 
+use panix\engine\CMS;
 use panix\engine\Html;
 use panix\engine\SettingsModel;
 use yii\web\UploadedFile;
@@ -42,6 +43,8 @@ class SettingsForm extends SettingsModel
 
     public $availability_hide;
 
+    public $tpl_product;
+private $tpl_product_file;
     public function rules()
     {
 
@@ -70,6 +73,7 @@ class SettingsForm extends SettingsModel
                 'liqpay_provider',
                 'yandexKassa_provider',
                 'tranzzo_provider',
+                'tpl_product'
             ], 'string', 'min' => 3],
 
 
@@ -79,6 +83,34 @@ class SettingsForm extends SettingsModel
         ];
     }
 
+    public function init()
+    {
+        $this->tpl_product_file = Yii::getAlias('@app/web').DIRECTORY_SEPARATOR.'product.twig';
+
+
+        if(file_exists($this->tpl_product_file)){
+            $this->tpl_product = file_get_contents($this->tpl_product_file);
+        }else{
+            $this->tpl_product = file_get_contents(Yii::getAlias('@telegram/views/templates').DIRECTORY_SEPARATOR.'product.twig');
+        }
+
+        parent::init();
+    }
+
+
+    public function save()
+    {
+        if(!empty($this->tpl_product)){
+
+                file_put_contents($this->tpl_product_file,$this->tpl_product);
+
+        }else{
+
+            //Если содержание пустое, то удаляем файл.
+            unlink($this->tpl_product_file);
+        }
+        parent::save();
+    }
     public static function defaultSettings()
     {
         return [

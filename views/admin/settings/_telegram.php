@@ -18,5 +18,9 @@
 <?= $form->field($model, 'button_text_search')->textInput() ?>
 <?= $form->field($model, 'button_text_history')->textInput() ?>
 <?= $form->field($model, 'button_text_cart')->textInput() ?>
+<?php // $form->field($model, 'tpl_product')->textarea(['rows'=>10])->hint('Чтобы сбросить шаблон просто очистите поле и сохраните.') ?>
+
+
+
 
 <?= $form->field($model, 'label_expire_new')->dropDownList($model::labelExpireNew(),['prompt'=>Yii::t('app/default','OFF')]); ?>

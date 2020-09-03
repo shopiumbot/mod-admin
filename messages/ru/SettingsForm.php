@@ -13,6 +13,7 @@ return [
     'ATTACHMENT_WM_CORNER' => 'Позиция водяного знака',
     'ATTACHMENT_WM_OFFSETX' => 'Отступ по горизонтали',
     'ATTACHMENT_WM_OFFSETY' => 'Отступ по вертикали',
+    'TPL_PRODUCT' => 'Шаблон карточки товара',
     'WM_POS_LEFT_TOP' => 'Левый верхний угол',
     'WM_POS_RIGHT_TOP' => 'Правый верхний угол',
     'WM_POS_LEFT_BOTTOM' => 'Левый нижний угол',
