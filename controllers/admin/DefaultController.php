@@ -34,7 +34,10 @@ class DefaultController extends AdminController
 
         return $this->render('index');
     }
-
+    public function actionExtensions()
+    {
+        return $this->render('extensions');
+    }
     public function actionAjaxCounters()
     {
 
