@@ -12,7 +12,7 @@ class SettingsForm extends SettingsModel
 {
     protected $module = 'admin';
     public static $category = 'app';
-    public $pagenum;
+   // public $pagenum;
     public $email;
     public $empty_cart_text;
     public $empty_history_text;
@@ -40,11 +40,12 @@ class SettingsForm extends SettingsModel
     public $yandexKassa_provider;
     public $tranzzo_provider;
 
-
+    public $language;
     public $availability_hide;
 
     public $tpl_product;
-private $tpl_product_file;
+    private $tpl_product_file;
+
     public function rules()
     {
 
@@ -52,11 +53,12 @@ private $tpl_product_file;
             [['label_expire_new'], 'integer'],
             [['email'], 'trim'],
             [['watermark_enable', 'enable_brands', 'enable_new', 'enable_discounts', 'liqpay_percent', 'availability_hide'], 'boolean'],
-            [['pagenum', 'pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
+            [['pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',
+                'language',
                 'email',
-                'pagenum',
+               // 'pagenum',
                 'pagenum_telegram',
                 'button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart',
                 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
@@ -85,13 +87,13 @@ private $tpl_product_file;
 
     public function init()
     {
-        $this->tpl_product_file = Yii::getAlias('@app/web').DIRECTORY_SEPARATOR.'product.twig';
+        $this->tpl_product_file = Yii::getAlias('@app/web') . DIRECTORY_SEPARATOR . 'product.twig';
 
 
-        if(file_exists($this->tpl_product_file)){
+        if (file_exists($this->tpl_product_file)) {
             $this->tpl_product = file_get_contents($this->tpl_product_file);
-        }else{
-            $this->tpl_product = file_get_contents(Yii::getAlias('@telegram/views/templates').DIRECTORY_SEPARATOR.'product.twig');
+        } else {
+            $this->tpl_product = file_get_contents(Yii::getAlias('@telegram/views/templates') . DIRECTORY_SEPARATOR . 'product.twig');
         }
 
         parent::init();
@@ -100,17 +102,18 @@ private $tpl_product_file;
 
     public function save()
     {
-        if(!empty($this->tpl_product)){
+        if (!empty($this->tpl_product)) {
 
-                file_put_contents($this->tpl_product_file,$this->tpl_product);
+            file_put_contents($this->tpl_product_file, $this->tpl_product);
 
-        }else{
+        } else {
 
             //Если содержание пустое, то удаляем файл.
             unlink($this->tpl_product_file);
         }
         parent::save();
     }
+
     public static function defaultSettings()
     {
         return [

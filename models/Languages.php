@@ -2,9 +2,10 @@
 
 namespace shopium\mod\admin\models;
 
+use core\components\ActiveRecord;
 use Yii;
 use shopium\mod\admin\models\query\LanguagesQuery;
-use panix\engine\db\ActiveRecord;
+
 
 /**
  * Class Languages
