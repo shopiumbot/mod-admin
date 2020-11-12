@@ -20,15 +20,14 @@ echo GridView::widget([
     'layoutOptions' => ['title' => $this->context->pageName],
     'columns' => [
         [
+            'attribute' => 'name',
             'format' => 'html',
-            'header' => 'Флаг',
-            'contentOptions' => ['class' => 'text-center'],
+            'contentOptions' => ['class' => 'text-left d-flex align-items-center'],
             'value' => function ($model) use ($emoji) {
-                return $emoji->emoji_unified_to_html($model->icon);
-                //return Html::img($model->getFlagUrl(), ['alt' => $model->name, 'title' => $model->name]);
+                return $emoji->emoji_unified_to_html($model->icon).' <span class="ml-2">'.$model->name . ' (' . $model->code . ')</span>';
             },
         ],
-        'name',
+
         [
             'class' => 'panix\engine\grid\columns\BooleanColumn',
             'attribute' => 'is_default',
