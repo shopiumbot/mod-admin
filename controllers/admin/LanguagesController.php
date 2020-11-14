@@ -41,6 +41,101 @@ class LanguagesController extends AdminController
         $this->generateMessagesModules('fr');
     }
 
+
+
+
+
+    public function actionAjaxOpen()
+    {
+        $this->_tl =Yii::$app->request->post('locale');
+        $mod = Yii::$app->request->post('module');
+        $file = Yii::$app->request->post('file');
+        $addonsLang = Yii::$app->request->post('lang');
+        $type = Yii::$app->request->post('type');
+        if ($type == 'modules') {
+            $fullPath = self::PATH_MOD . '.' . $mod . '.messages';
+            $dir = Yii::getPathOfAlias($fullPath . '.' . $this->_tl) . DS . $file;
+        } else {
+            $fullPath = Yii::$app->getComponent('messages')->basePath;
+            $dir = $fullPath.DS . $this->_tl . DS . $file;
+        }
+
+        if (isset($_POST['TranslateForm'])) {
+            $trans = array();
+            foreach ($_POST['TranslateForm'] as $key => $val) {
+                if (is_array($val)) {
+                    $param = array();
+                    foreach ($val as $key2 => $value) {
+                        $param[] = $key2 . '#' . $value;
+                    }
+                    $trans[stripslashes($key)] = implode('|', $param);
+                } else {
+                    $trans[stripslashes($key)] = $val;
+                }
+            }
+
+
+            if (!empty($addonsLang)) {
+
+                $this->createFileLanguage(Yii::getPathOfAlias($fullPath), $file, array($this->_tl, $addonsLang), $trans);
+            }
+
+            $this->writeContent($dir, $trans);
+        }
+        $return = include($dir);
+        return $this->render('_ajaxOpen', array('return' => $return, 'module' => $mod, 'locale' => $this->_tl, 'file' => $file, 'type' => $type));
+    }
+
+
+
+
+
+    public function _______actionEditorLang()
+    {
+        $json = array();
+        $lang = Yii::$app->request->post('lang');
+        $key = Yii::$app->request->post('key');
+        $category = Yii::$app->request->post('category');
+        $file = Yii::$app->request->post('file');
+
+        //$file=CMS::getTranslateFile($category);
+
+
+//die($file);
+        if (file_exists($file)) {
+            //Load file array
+            $list = require_once($file);
+            //find var
+            if (array_key_exists($key, $list)) {
+                //Если ключ найден, то редактируем
+                if (isset($lang)) {
+                    $list[$key] = $lang[$category][$key]['value'];
+                    $json['message'] = 'Переменая успешно отредактирована';
+                }
+            } else {
+                //Если ключ НЕ найден, то добавляем
+                $fullList = $list;
+                if (isset($lang)) {
+                    $params[$key] = $lang[$category][$key]['value'];
+                    $list = CMap::mergeArray($params, $fullList);
+                    $json['message'] = 'Новая переменая добавлена в языки.';
+                }
+            }
+            $this->writeContent($file, $list);
+        }else{
+            //Если файл не найден, то создаем.
+            //Todo panix
+            if(!file_exists($file)){
+
+            }
+
+            $json['message'] = 'file no found: '.$file;
+        }
+
+        $json['status'] = 'success';
+        echo CJSON::encode($json);
+        Yii::app()->end();
+    }
     public function actionIndex()
     {
         $this->pageName = Yii::t('admin/default', 'LANGUAGES');
