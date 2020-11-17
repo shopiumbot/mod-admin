@@ -4,6 +4,7 @@ return [
     'MODULES' => 'Модулі',
     'MODULE_NAME' => 'Адмін',
     'NOTIFICATION' => 'Повідомлення',
+    'LANGUAGES' => 'Мова',
     'WIDGETS_UPDATE' => 'Редагування віджета',
     'USERNAME' => 'Логін',
     'PASSWORD' => 'Пароль',

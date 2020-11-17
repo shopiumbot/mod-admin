@@ -4,6 +4,7 @@ return [
     'MODULES' => 'Модули',
     'MODULE_NAME' => 'Админ-панель',
     'NOTIFICATION' => 'Уведомления',
+    'LANGUAGES' => 'Языка',
     'WIDGETS_UPDATE' => 'Редактирование виджета',
     'USERNAME' => 'Логин',
     'PASSWORD' => 'Пароль',

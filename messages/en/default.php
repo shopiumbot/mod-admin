@@ -4,6 +4,7 @@ return [
     'MODULES' => 'Modules',
     'MODULE_NAME' => 'Admin Panel',
     'NOTIFICATION' => 'Notifications',
+    'LANGUAGES' => 'Languages',
     'WIDGETS_UPDATE' => 'Editing a widget',
     'USERNAME' => 'Login',
     'PASSWORD' => 'Password',
