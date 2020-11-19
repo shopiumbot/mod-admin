@@ -8,7 +8,6 @@ use shopium\mod\telegram\models\Chat;
 use shopium\mod\telegram\components\LiqPay;
 
 
-
 $api = Yii::$app->telegram;
 $user = Yii::$app->user->identity;
 
@@ -103,7 +102,7 @@ if ($chats) {
                         $usersCount = \shopium\mod\telegram\models\User::find()->where(['is_bot' => 0])->count();
                         ?>
                         <h2><?= $usersCount; ?></h2>
-                        <h6 class="text-orange">Пользователей</h6>
+                        <h6 class="text-orange"><?= Yii::t('admin/default', 'USERS'); ?></h6>
                     </div>
                 </div>
             </div>
@@ -123,7 +122,7 @@ if ($chats) {
                             ->count();
                         ?>
                         <h2><?= $messagesCount; ?></h2>
-                        <h6 class="text-info">Сообщений <span class="text-muted">за сегодня</span></h6>
+                        <h6 class="text-info"><?= Yii::t('admin/default', 'MESSAGES_TODAY'); ?></h6>
 
                     </div>
                 </div>
@@ -145,8 +144,7 @@ if ($chats) {
                                 $percent = $a / $b * 100;
                                 ?>
                                 <h3><?= $percent; ?>%</h3>
-                                <h6 class="card-subtitle">Всего продукции <strong><?= $a; ?></strong> из
-                                    <strong><?= $b; ?></strong></h6>
+                                <h6 class="card-subtitle"><?= Yii::t('admin/default', 'PRODUCTS_COUNTER', [$a, $b]); ?></h6>
                             </div>
                             <div class="ml-auto">
                                 <span class="text-success display-6"><i class="ti-layout-slider-alt"></i></span>
@@ -172,33 +170,33 @@ if ($chats) {
             <div class="card-header">
                 <?php
 
-                    if ($me->isOk()) { ?>
-                        Подключен бот: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
-                    <?php } else { ?>
-                        Бот не подключен!
-                    <?php } ?>
-                    <?php
+                if ($me->isOk()) { ?>
+                    <?= Yii::t('telegram/default', 'WEBHOOK_CONNECT'); ?>: <?= Html::a($me->getResult()->first_name, 'tg://resolve?domain=' . $me->getResult()->username); ?>
+                <?php } else { ?>
+                    <?= Yii::t('telegram/default', 'WEBHOOK_DISCONNECT'); ?>
+                <?php } ?>
+                <?php
 
                 ?>
                 <div class="float-right">
                     <?php
 
 
-                        if ($webhook_info->isOk()) {
-                            $result = $webhook_info->getResult();
+                    if ($webhook_info->isOk()) {
+                        $result = $webhook_info->getResult();
 
-                            if (!empty($result->url)) {
-                                if ($result->url === Yii::$app->user->webhookUrl) {
-                                    echo Html::a('☹️ Отписать бота', ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
-                                } else {
-                                    echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
-                                }
+                        if (!empty($result->url)) {
+                            if ($result->url === Yii::$app->user->webhookUrl) {
+                                echo Html::a(Yii::t('telegram/default', 'WEBHOOK_UNSET'), ['/telegram/message/unset'], ['class' => 'btn btn-sm btn-danger']);
                             } else {
-                                echo Html::a(Html::icon('check') . ' Подписать бота', ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
+                                echo Html::a(Html::icon('check') . ' ' . Yii::t('telegram/default', 'WEBHOOK_SET'), ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                             }
                         } else {
-                            echo '2';
+                            echo Html::a(Html::icon('check') . ' ' . Yii::t('telegram/default', 'WEBHOOK_SET'), ['/telegram/message/set'], ['class' => 'btn btn-sm btn-success']);
                         }
+                    } else {
+                        echo '2';
+                    }
 
                     ?>
                 </div>
@@ -233,13 +231,13 @@ if ($chats) {
 
 
                 <div class="form-group row">
-                    <div class="col-sm-5 col-lg-5"><label>Ваш ID</label></div>
+                    <div class="col-sm-5 col-lg-5"><label><?= Yii::t('admin/default', 'YOUR_ID'); ?></label></div>
                     <div class="col-sm-7 col-lg-7"><?= $user->id; ?></div>
                 </div>
 
                 <?php if ($user->expire) { ?>
                     <div class="form-group row">
-                        <div class="col-sm-5 col-lg-5"><label>Продлен до</label></div>
+                        <div class="col-sm-5 col-lg-5"><label><?= Yii::t('admin/default', 'EXTENDED_TO'); ?></label></div>
                         <div class="col-sm-7 col-lg-7">
                             <?= \panix\engine\CMS::date($user->expire); ?>
                         </div>
@@ -247,7 +245,7 @@ if ($chats) {
                 <?php } ?>
                 <?php if ($user->plan_id) { ?>
                     <div class="form-group row">
-                        <div class="col-sm-5 col-lg-5"><label>Текущий тариф</label></div>
+                        <div class="col-sm-5 col-lg-5"><label><?= Yii::t('admin/default', 'CURRENT_TARIFF'); ?></label></div>
                         <div class="col-sm-7 col-lg-7">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -262,7 +260,7 @@ if ($chats) {
                                 <div class="col-lg-6 text-lg-right">
                                     <button type="button" class="btn btn-success" data-toggle="modal"
                                             data-target="#paymentModal">
-                                        Продлить
+                                        <?= Yii::t('user/default', 'RENEW'); ?>
                                     </button>
                                 </div>
                             </div>
@@ -273,15 +271,6 @@ if ($chats) {
 
             </div>
         </div>
-
-    </div>
-    <div class="card d-none">
-        <div class="card-header">
-            Источники входа
-        </div>
-        <div class="card-body">
-            asd
-        </div>
     </div>
 </div>
 
@@ -290,7 +279,7 @@ if ($chats) {
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="paymentModalLabel">Оплатить тариф: <span
+                <h5 class="modal-title" id="paymentModalLabel"><?= Yii::t('user/default', 'PAY_TARIFF'); ?>: <span
                             class="badge badge-success"><?= Yii::$app->params['plan'][$user->plan_id]['name']; ?></span>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -301,7 +290,7 @@ if ($chats) {
 
                 <h3>LiqPay</h3>
                 <div class="alert alert-warning">
-                    К общей стоимости будет добавлена комиссии сервиса <strong>2.75%</strong>
+                    <?= Yii::t('user/default', 'PAYMENT_COMMISSION_HINT', '2.75%'); ?>
                 </div>
                 <?php
                 $liqPayConfig = Yii::$app->params['payment']['liqpay'];
@@ -335,7 +324,7 @@ if ($chats) {
                         echo Html::beginForm('https://www.liqpay.ua/api/3/checkout', 'POST', ['accept-charset' => 'utf-8']);
                         echo Html::hiddenInput('data', base64_encode(json_encode($params)));
                         echo Html::hiddenInput('signature', $signature);
-                        echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
+                        echo Html::submitButton(Yii::t('user/default', 'RENEW_FOR_MONTH', ['value' => $price1, 'currency' => 'UAH']), ['class' => 'btn btn-success']);
                         echo Html::endForm();
                         ?>
                     </div>
@@ -361,19 +350,19 @@ if ($chats) {
                         echo Html::beginForm('https://www.liqpay.ua/api/3/checkout', 'POST', ['accept-charset' => 'utf-8']);
                         echo Html::hiddenInput('data', base64_encode(json_encode($params)));
                         echo Html::hiddenInput('signature', $signature);
-                        echo Html::submitButton("Продлить на 1 год - {$price12} грн", ['class' => 'btn btn-success']);
-                        echo '👍 Экономия: ' . (($price1 * 12) - $price12) . ' грн.';
+                        echo Html::submitButton(Yii::t('user/default', 'RENEW_FOR_YEAR', ['value' => $price12, 'currency' => 'UAH']), ['class' => 'btn btn-success']);
+                        echo Yii::t('user/default', 'ECONOMY', ['value' => (($price1 * 12) - $price12), 'currency' => 'UAH']);
                         echo Html::endForm();
                         ?>
                     </div>
                 </div>
-                <h3 class="mt-4">Продлить с баланса</h3>
+                <h3 class="mt-4"><?= Yii::t('user/default', 'RENEW_FROM_BALANCE'); ?></h3>
                 <div class="row">
                     <div class="col-sm-6">
                         <?php
                         echo Html::beginForm(['/user/payment-balance'], 'GET', ['onsubmit' => "return confirm('Вы уверены что хотите продлить тариф, с личного баланса?');"]);
                         echo Html::hiddenInput('month', 1);
-                        echo Html::submitButton("Продлить на 1 мес. - {$price1} грн", ['class' => 'btn btn-success']);
+                        echo Html::submitButton("Продлить на 1 мес. - {$price1} UAH", ['class' => 'btn btn-success']);
                         echo Html::endForm();
                         ?>
                     </div>
@@ -381,17 +370,13 @@ if ($chats) {
                         <?php
                         echo Html::beginForm(['/user/payment-balance'], 'GET');
                         echo Html::hiddenInput('month', 12);
-                        echo Html::submitButton("Продлить на 1 год - {$price12} грн", ['class' => 'btn btn-success']);
-                        echo '👍 Экономия: ' . (($price1 * 12) - $price12) . ' грн.';
+                        echo Html::submitButton(Yii::t('user/default', 'RENEW_FOR_YEAR', ['value' => $price12, 'currency' => 'UAH']), ['class' => 'btn btn-success']);
+                        echo Yii::t('user/default', 'ECONOMY', ['value' => (($price1 * 12) - $price12), 'currency' => 'UAH']);
                         echo Html::endForm();
                         ?>
                     </div>
                 </div>
 
-            </div>
-            <div class="modal-footer d-none">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Заказыть</button>
-                <button type="button" class="btn btn-primary">Оплатить</button>
             </div>
         </div>
     </div>

@@ -12,5 +12,15 @@ return [
     'DESKTOP' => 'Рабочий стол',
     'DESKTOP_CREATE' => 'Добавить рабочий стол',
     'DESKTOP_CREATE_WIDGET' => 'Добавить виджет',
-    'CMS' => 'Система управление ботом'
+    'CMS' => 'Система управление ботом',
+    'GENERAL' => 'Общие',
+    'TAB_WATERMARK' => 'Водяной знак',
+    'TAB_PAYMENT_SYSTEM' => 'Платежные системы',
+    'DOCUMENTATION' => 'Документация',
+    'USERS' => 'Пользователей',
+    'MESSAGES_TODAY' => 'Сообщений <span class="text-muted">за сегодня</span>',
+    'PRODUCTS_COUNTER' => 'Всего продукции <strong>{0}</strong> из <strong>{1}</strong>',
+    'YOUR_ID' => 'Ваш ID',
+    'EXTENDED_TO' => 'Продлен до',
+    'CURRENT_TARIFF' => 'Текущий тариф',
 ];

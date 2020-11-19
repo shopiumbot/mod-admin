@@ -29,11 +29,11 @@ class AuthController extends WebController
     {
 
         if (!Yii::$app->user->isGuest)
-            return $this->redirect(['/admin']);
+            return $this->redirect(['/admin/admin/default']);
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login(86400*30)) {
-            return $this->goBack(['/admin']);
+            return $this->goBack(['/admin/admin/default']);
         }
 
         // render

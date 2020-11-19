@@ -21,7 +21,7 @@ use panix\engine\bootstrap\ActiveForm;
             ],
             'items' => [
                 [
-                    'label' => 'Общие',
+                    'label' => Yii::t('admin/default','GENERAL'),
                     'content' => $this->render('_global', ['form' => $form, 'model' => $model]),
                     'active' => true,
                 ],
@@ -31,12 +31,12 @@ use panix\engine\bootstrap\ActiveForm;
                     'headerOptions' => [],
                 ],
                 [
-                    'label' => 'Водяной знак',
+                    'label' => Yii::t('admin/default','TAB_WATERMARK'),
                     'content' => $this->render('_images', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],
                 ],
                 [
-                    'label' => 'Платежные системы',
+                    'label' => Yii::t('admin/default','TAB_PAYMENT_SYSTEM'),
                     'content' => $this->render('_payments', ['form' => $form, 'model' => $model]),
                     'headerOptions' => [],
                 ]
