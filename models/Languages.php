@@ -14,6 +14,7 @@ use shopium\mod\admin\models\query\LanguagesQuery;
  * @property string $code
  * @property string $name
  * @property string $locale
+ * @property string $icon
  * @property integer $is_default
  */
 class Languages extends ActiveRecord
@@ -33,13 +34,16 @@ class Languages extends ActiveRecord
 
     public function rules()
     {
-        return [
-            [['name', 'code', 'locale'], 'required'],
-            [['name'], 'string', 'max' => 100],
-            [['code'], 'string', 'max' => 2],
-            [['locale'], 'string', 'max' => 5],
-            [['is_default'], 'in', 'range' => [0, 1]],
-        ];
+        $rules = [];
+        //if($this->code != Yii::$app->language){
+        $rules[] = [['is_default'], 'in', 'range' => [0, 1]];
+       // }
+        return $rules;
+        //[['name', 'code', 'locale'], 'required'],
+        //[['name'], 'string', 'max' => 100],
+        //[['code'], 'string', 'max' => 2],
+        //[['locale'], 'string', 'max' => 5],
+
     }
 
     public function afterSave($insert, $changedAttributes)

@@ -2,18 +2,19 @@
 
 namespace shopium\mod\admin\controllers\admin;
 
-use panix\engine\CMS;
-use panix\engine\Html;
-use shopium\mod\admin\components\YandexTranslate;
+
 use Yii;
+use yii\base\Exception;
+use yii\helpers\FileHelper;
+use yii\web\Response;
 use core\components\controllers\AdminController;
 use shopium\mod\admin\models\Languages;
 use shopium\mod\admin\models\search\LanguagesSearch;
-use yii\base\Exception;
-use yii\helpers\FileHelper;
-use yii\helpers\Json;
-use yii\helpers\VarDumper;
-use yii\web\Response;
+use shopium\mod\admin\components\YandexTranslate;
+use panix\engine\CMS;
+use panix\engine\emoji\Emoji;
+use panix\engine\Html;
+
 
 class LanguagesController extends AdminController
 {
@@ -165,22 +166,20 @@ class LanguagesController extends AdminController
     public function actionUpdate($id = false)
     {
         $model = Languages::findModel($id);
-        $isNew = $model->isNewRecord;
-        $this->pageName = Yii::t('admin/default', 'LANGUAGES');
+
+        $this->pageName = Yii::t('admin/default', 'LANGUAGE') .' '.$model->name;
 
         $this->view->params['breadcrumbs'][] = [
-            'label' => $this->pageName,
+            'label' => Yii::t('admin/default', 'LANGUAGES'),
             'url' => ['index']
         ];
 
         $this->view->params['breadcrumbs'][] = Yii::t('app/default', 'UPDATE');
 
-
-        //$model->setScenario("admin");
         $post = Yii::$app->request->post();
         if ($model->load($post) && $model->validate()) {
             $model->save();
-            return $this->redirectPage($isNew, $post);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

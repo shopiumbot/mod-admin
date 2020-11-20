@@ -28,7 +28,7 @@ class DefaultController extends AdminController
     {
 
         $this->pageName = Yii::t('admin/default', 'CMS');
-        $this->breadcrumbs[] = $this->pageName;
+        $this->view->params['breadcrumbs'][] = $this->pageName;
         $this->clearCache();
         $this->clearAssets();
 
