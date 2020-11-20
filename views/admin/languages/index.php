@@ -24,7 +24,7 @@ echo GridView::widget([
             'format' => 'html',
             'contentOptions' => ['class' => 'text-left d-flex align-items-center'],
             'value' => function ($model) use ($emoji) {
-                return $emoji->emoji_unified_to_html($model->icon).' <span class="ml-2">'.$model->name . ' (' . $model->code . ')</span>';
+                return $emoji->emoji_unified_to_html($model->icon) . ' <span class="ml-2">' . $model->name . ' (' . $model->code . ')</span>';
             },
         ],
 
@@ -33,7 +33,10 @@ echo GridView::widget([
             'attribute' => 'is_default',
             'format' => 'html'
         ],
-        ['class' => 'panix\engine\grid\columns\ActionColumn']
+        [
+            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'template' => '{switch} {update}'
+        ]
     ]
 ]);
 Pjax::end();

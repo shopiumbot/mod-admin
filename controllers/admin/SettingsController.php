@@ -15,13 +15,7 @@ class SettingsController extends AdminController
     public function actionIndex()
     {
         $this->pageName = Yii::t('app/default', 'SETTINGS');
-        $this->view->params['breadcrumbs'] = [
-            [
-                'label' => $this->module->info['label'],
-                'url' => $this->module->info['url'],
-            ],
-            $this->pageName
-        ];
+        $this->view->params['breadcrumbs'][] = $this->pageName;
 
         $model = new SettingsForm();
         $oldWatermark = $model->attachment_wm_path;

@@ -14,8 +14,6 @@ class SettingsForm extends SettingsModel
     public static $category = 'app';
    // public $pagenum;
     public $email;
-    public $empty_cart_text;
-    public $empty_history_text;
     public $watermark_enable;
     public $attachment_wm_path;
     public $attachment_wm_corner;
@@ -26,11 +24,6 @@ class SettingsForm extends SettingsModel
     public $enable_new;
     public $enable_discounts;
 
-    public $button_text_start;
-    public $button_text_cart;
-    public $button_text_catalog;
-    public $button_text_search;
-    public $button_text_history;
     public $timezone;
     public $label_expire_new;
 
@@ -60,18 +53,11 @@ class SettingsForm extends SettingsModel
                 'email',
                // 'pagenum',
                 'pagenum_telegram',
-                'button_text_catalog', 'button_text_start', 'button_text_search', 'button_text_history', 'button_text_cart',
                 'attachment_wm_offsetx', 'attachment_wm_offsety', 'attachment_wm_corner',
-                'empty_cart_text', 'empty_history_text',
             ], "required"],
             ['email', 'email'],
 
             [[
-                'button_text_catalog',
-                'button_text_start',
-                'button_text_search',
-                'button_text_history',
-                'button_text_cart',
                 'liqpay_provider',
                 'yandexKassa_provider',
                 'tranzzo_provider',
@@ -132,14 +118,7 @@ class SettingsForm extends SettingsModel
             'attachment_wm_offsetx' => 10,
             'attachment_wm_corner' => 5,
             'pagenum_telegram' => 5,
-            'empty_cart_text' => 'Ваша корзина пустая',
-            'empty_history_text' => 'Ваша история пустая Воспользуйтесь каталогом чтобы ее наполнить',
             'label_expire_new' => 7,
-            'button_text_start' => '🏠 Начало',
-            'button_text_cart' => '🛍 Корзина',
-            'button_text_search' => '🔎 Поиск',
-            'button_text_catalog' => '📂 Каталог',
-            'button_text_history' => '📦 Мои покупки',
             'availability_hide' => false,
 
         ];
