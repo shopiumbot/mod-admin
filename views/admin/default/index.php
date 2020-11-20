@@ -258,10 +258,7 @@ if ($chats) {
 
 
                                 <div class="col-lg-6 text-lg-right">
-                                    <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#paymentModal">
-                                        <?= Yii::t('user/default', 'RENEW'); ?>
-                                    </button>
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#paymentModal"><?= Yii::t('user/default', 'RENEW'); ?></button>
                                 </div>
                             </div>
 
@@ -336,7 +333,7 @@ if ($chats) {
                         $params['action'] = 'pay';
                         $params['amount'] = $price12 + ($price12 / 100 * 2.75);
                         $params['currency'] = 'UAH';
-                        $params['description'] = 'Оплата тарифного плана "' . Yii::$app->params['plan'][Yii::$app->user->planId]['name'] . '" на 1 год + (комиссия 2.75%)';
+                        $params['description'] = Yii::t('user/default', 'PAYMENT_RENEW_YEAR_TARIFF',['tariff'=>Yii::$app->params['plan'][Yii::$app->user->planId]['name'],'commission'=>'2.75']);
                         $params['order_id'] = \panix\engine\CMS::gen(5) . '-' . Yii::$app->user->id . '-12';
                         $params['version'] = '3';
                         $params['result_url'] = Url::to('/user/payment-result', true);
@@ -360,9 +357,9 @@ if ($chats) {
                 <div class="row">
                     <div class="col-sm-6">
                         <?php
-                        echo Html::beginForm(['/user/payment-balance'], 'GET', ['onsubmit' => "return confirm('Вы уверены что хотите продлить тариф, с личного баланса?');"]);
+                        echo Html::beginForm(['/user/payment-balance'], 'GET', ['onsubmit' => "return confirm('".Yii::t('admin/default','RENEW_CONFIRM_BALANCE')."');"]);
                         echo Html::hiddenInput('month', 1);
-                        echo Html::submitButton("Продлить на 1 мес. - {$price1} UAH", ['class' => 'btn btn-success']);
+                        echo Html::submitButton(Yii::t('user/default', 'RENEW_FOR_MONTH', ['value' => $price1, 'currency' => 'UAH']), ['class' => 'btn btn-success']);
                         echo Html::endForm();
                         ?>
                     </div>
