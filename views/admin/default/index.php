@@ -71,11 +71,7 @@ if ($chats) {
 
 
 ?>
-<?php if (Yii::$app->session->hasFlash('success-webhook')) { ?>
-    <div class="alert alert-success">
-        <?= Yii::$app->session->getFlash('success-webhook'); ?>
-    </div>
-<?php } ?>
+
 <?php if (Yii::$app->session->hasFlash('success-payment')) { ?>
     <div class="alert alert-success">
         <?= Yii::$app->session->getFlash('success-payment'); ?>

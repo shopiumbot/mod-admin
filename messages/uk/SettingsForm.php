@@ -23,7 +23,7 @@ return [
     'WM_POS_LEFT_CENTER' => 'З ліво по центру',
     'WM_POS_RIGHT_CENTER' => 'З правно по центру',
     'WM_POS_REPEAT' => 'Повторення на все зображення',
-    'ERROR_WM_NO_IMAGE' => 'Помилка. Водяний знак не зображення. ',
+    'ERROR_WM_NO_IMAGE' => 'Помилка. Водяний знак не зображення.',
     'LABEL_EXPIRE_NEW' => 'Товар автоматично считаеться новим',
     'LABEL_NEW_DAYS' => '{n, plural, =0{нет} =1{# день} one{# день} few{# дня} many{# дней} other{# дні}}',
     'PAGENUM_TELEGRAM' => 'Кількість найменувань в каталозі',

@@ -132,7 +132,7 @@ class DefaultController extends AdminController
                 'allModels' => $data,
                 'pagination' => false
             ]);
-            return $this->renderPartial('@panix/engine/views/_EditGridColumns', [
+            return $this->renderPartial('grid', [
                 'modelClass' => $modelClass,
                 'provider' => $provider,
                 'grid_id' => $grid_id,

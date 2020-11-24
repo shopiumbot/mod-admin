@@ -24,4 +24,7 @@ return [
     'YOUR_ID' => 'Your ID',
     'EXTENDED_TO' => 'Extended to',
     'CURRENT_TARIFF' => 'Current tariff',
+    'POSITION' => 'Position',
+    'FIELD_NAME' => 'Field name',
+    'PAGE_SIZE' => 'Number of records per page',
 ];

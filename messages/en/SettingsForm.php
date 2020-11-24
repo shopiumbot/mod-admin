@@ -23,7 +23,7 @@ return [
     'WM_POS_LEFT_CENTER' => 'From left to center',
     'WM_POS_RIGHT_CENTER' => 'Right centered',
     'WM_POS_REPEAT' => 'Repetition for the whole image',
-    'ERROR_WM_NO_IMAGE' => 'Error. The watermark is not an image. ',
+    'ERROR_WM_NO_IMAGE' => 'Error. The watermark is not an image.',
     'LABEL_EXPIRE_NEW' => 'The product is automatically considered new',
     'LABEL_NEW_DAYS' => '{n, plural, =0{no} =1{# day} one{# day} few{# days} many{# days} other{# days}}',
     'PAGENUM_TELEGRAM' => 'Number of items in the catalog',

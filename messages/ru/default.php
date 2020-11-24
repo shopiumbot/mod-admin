@@ -24,4 +24,7 @@ return [
     'YOUR_ID' => 'Ваш ID',
     'EXTENDED_TO' => 'Продлен до',
     'CURRENT_TARIFF' => 'Текущий тариф',
+    'POSITION' => 'Позиция',
+    'FIELD_NAME' => 'Название поля',
+    'PAGE_SIZE' => 'Количество записей на странице',
 ];
