@@ -2,7 +2,7 @@
 return [
     'SYSTEM' => 'Система',
     'MODULES' => 'Модулі',
-    'MODULE_NAME' => 'Адмін',
+    'MODULE_NAME' => 'Адмін панель',
     'NOTIFICATION' => 'Повідомлення',
     'LANGUAGES' => 'Мова',
     'LANGUAGE' => 'Мова',
