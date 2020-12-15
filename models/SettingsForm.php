@@ -33,7 +33,7 @@ class SettingsForm extends SettingsModel
     public $yandexKassa_provider;
     public $tranzzo_provider;
 
-    public $language;
+   // public $language;
     public $availability_hide;
 
     public $tpl_product;
@@ -49,7 +49,7 @@ class SettingsForm extends SettingsModel
             [['pagenum_telegram', 'attachment_wm_corner', 'attachment_wm_offsety', 'attachment_wm_offsetx'], 'integer'],
             [[
                 'timezone',
-                'language',
+              //  'language',
                 'email',
                // 'pagenum',
                 'pagenum_telegram',
