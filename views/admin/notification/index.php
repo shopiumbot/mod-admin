@@ -28,7 +28,7 @@ echo GridView::widget([
                 return \panix\engine\CMS::date($model->created_at);
             }
         ],
-        ['class' => 'panix\engine\grid\columns\ActionColumn']
+        ['class' => 'core\components\ActionColumn']
     ]
 ]);
 Pjax::end();

@@ -34,7 +34,7 @@ echo GridView::widget([
             'format' => 'html'
         ],
         [
-            'class' => 'panix\engine\grid\columns\ActionColumn',
+            'class' => 'core\components\ActionColumn',
             'template' => '{switch} {update}'
         ]
     ]
