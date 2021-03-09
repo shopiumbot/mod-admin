@@ -305,8 +305,8 @@ if ($chats) {
                         $params['description'] = 'Оплата тарифного плана "' . Yii::$app->params['plan'][Yii::$app->user->planId]['name'] . '" на 1 месяц + (комиссия 2.75%)';
                         $params['order_id'] = \panix\engine\CMS::gen(5) . '-' . Yii::$app->user->id . '-1';
                         $params['version'] = '3';
-                        $params['result_url'] = Url::to('/user/payment-result', true);
-                        $params['server_url'] = Url::to('/user/payment-success', true);
+                        $params['result_url'] = Url::to(Yii::$app->user->id.'/user/payment-result', true);
+                        $params['server_url'] = Url::to(Yii::$app->user->id.'/user/payment-success', true);
                         $params['public_key'] = $liqPayConfig['public_key'];
                         if ($params['currency'] == LiqPay::CURRENCY_RUR) {
                             $params['currency'] = LiqPay::CURRENCY_RUB;
